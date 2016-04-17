@@ -1,5 +1,7 @@
 # The 338 challenge
 
+A web application for the 338 Challenge Fantasy League.
+
 ## Getting Started
 
 After you have cloned this repo, run this setup script to set up your machine
