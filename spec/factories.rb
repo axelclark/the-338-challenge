@@ -6,4 +6,8 @@ FactoryGirl.define do
     championship_date "2017-02-01"
   end
 
+  factory :fantasy_player do
+    name "Seattle Seahawks"
+    sports_league
+  end
 end

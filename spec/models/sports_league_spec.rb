@@ -8,6 +8,8 @@ RSpec.describe SportsLeague, type: :model do
       expect(league).to be_valid
     end
    
+    # Associations
+    it { should have_many(:fantasy_players) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:championship_date) }
   end
