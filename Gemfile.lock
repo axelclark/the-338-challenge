@@ -70,7 +70,7 @@ GEM
     concurrent-ruby (1.0.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    database_cleaner (1.5.1)
+    database_cleaner (1.5.2)
     debug_inspector (0.0.2)
     delayed_job (4.1.1)
       activesupport (>= 3.0, < 5.0)
@@ -246,7 +246,7 @@ GEM
       activemodel (>= 4.2)
       debug_inspector
       railties (>= 4.2)
-    webmock (1.24.3)
+    webmock (1.24.5)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
