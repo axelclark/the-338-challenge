@@ -1,28 +1,30 @@
 <div class="container">
   <section class="league-info">
-    <h1>Name: <%= @sports_league.name %></h1>
-    <h3>Waiver Deadline: <%= @sports_league.waiver_deadline %></h2>
-    <h3>Trade Deadline: <%= @sports_league.trade_deadline %></h2>
-    <h3>Championship Date: <%= @sports_league.championship_date %></h2>
+    <h1><%= @sports_league.name %></h1>
+    <p>Waiver Deadline: <%= @sports_league.waiver_deadline %></p>
+    <p>Trade Deadline: <%= @sports_league.trade_deadline %></p>
+    <p>Championship Date: <%= @sports_league.championship_date %></p>
   </section>
   <section class="players-collection">
-    <table class="players-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Owner</th>
-          <th>Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @sports_league.fantasy_players.each do |players| %>
+    <div class="players-container">
+      <table class="players-table">
+        <thead>
           <tr>
-            <td><%= players.name %></td>
-            <td></td>
-            <td></td>
+            <th>Name</th>
+            <th>Owner</th>
+            <th>Points</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @sports_league.fantasy_players.each do |players| %>
+            <tr>
+              <td><%= players.name %></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </section>
 </div>

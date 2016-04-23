@@ -1,0 +1,28 @@
+// sports_leagues/index
+.league-index-title {
+  h1 {
+    margin-bottom: $large-spacing;
+  }
+}
+
+// sports_leagues/show
+.league-info {
+  h1 {
+    margin-bottom: $large-spacing;
+  }
+
+  p {
+    @include shift(1);
+  }
+}
+
+.players-collection {
+  @include outer-container;
+  align-content: center;
+  display: flex;
+}
+
+.players-container {
+  @include span-columns(10);
+  @include shift(1);
+}

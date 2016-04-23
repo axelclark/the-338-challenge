@@ -12,9 +12,18 @@ th {
   text-align: left;
 }
 
+th:not(:first-child) {
+  text-align: center;
+}
+
 td {
   border-bottom: $base-border;
   padding: $small-spacing 0;
+  text-align: left;
+}
+
+td:not(:first-child) {
+  text-align: center;
 }
 
 tr,
