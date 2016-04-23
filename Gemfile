@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "2.3.0"
 
+gem "administrate", "~> 0.2.0"
+gem "administrate-field-image"
 gem "autoprefixer-rails"
 gem "bourbon", "5.0.0.beta.3"
 gem "delayed_job_active_record"
