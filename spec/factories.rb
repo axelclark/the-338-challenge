@@ -9,5 +9,6 @@ FactoryGirl.define do
   factory :fantasy_player do
     name "Seattle Seahawks"
     sports_league
+    final_ranking 1
   end
 end

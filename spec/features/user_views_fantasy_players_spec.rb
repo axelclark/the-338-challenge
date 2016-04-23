@@ -8,5 +8,6 @@ feature "user views fantasy players" do
     click_on "NFL"
 
     expect(page).to have_content "Seattle Seahawks"
+    expect(page).to have_css(".ranking", text: "1")
   end
 end

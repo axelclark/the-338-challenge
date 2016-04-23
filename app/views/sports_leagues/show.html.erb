@@ -14,8 +14,8 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Final Ranking</th>
             <th>Owner</th>
-            <th>Points</th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
               .order("fantasy_players.name").each do |players| %>
             <tr>
               <td><%= players.name %></td>
-              <td></td>
+              <td class="ranking"><%= players.final_ranking %></td>
               <td></td>
             </tr>
           <% end %>
