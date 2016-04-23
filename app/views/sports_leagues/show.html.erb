@@ -19,7 +19,8 @@
           </tr>
         </thead>
         <tbody>
-          <% @sports_league.fantasy_players.each do |players| %>
+          <% @sports_league.fantasy_players
+              .order("fantasy_players.name").each do |players| %>
             <tr>
               <td><%= players.name %></td>
               <td></td>
