@@ -17,9 +17,9 @@
           <tr>
             <td><%= link_to league.name, 
               sports_league_path(league) %></td>
-            <td><%= league.waiver_deadline %></td>
-            <td><%= league.trade_deadline %></td>
-            <td><%= league.championship_date%></td>
+            <td><%= league.waiver_deadline.to_s(:short_date) %></td>
+            <td><%= league.trade_deadline.to_s(:short_date) %></td>
+            <td><%= league.championship_date.to_s(:long)%></td>
           </tr>
         <% end %>
       </tbody>

@@ -1,9 +1,12 @@
 <div class="container">
   <section class="league-info">
     <h1><%= @sports_league.name %></h1>
-    <p>Waiver Deadline: <%= @sports_league.waiver_deadline %></p>
-    <p>Trade Deadline: <%= @sports_league.trade_deadline %></p>
-    <p>Championship Date: <%= @sports_league.championship_date %></p>
+    <div class="league-dates">
+      <p>Waiver Deadline: <%= @sports_league.waiver_deadline.to_s(:long) %></p>
+      <p>Trade Deadline: <%= @sports_league.trade_deadline.to_s(:long) %></p>
+      <p class="championship">Championship Date: 
+        <%= @sports_league.championship_date.to_s(:long) %></p>
+    </div>
   </section>
   <section class="players-collection">
     <div class="players-container">

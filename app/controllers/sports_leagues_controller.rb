@@ -1,7 +1,7 @@
 class SportsLeaguesController < ApplicationController
 
     def index
-      @sports_leagues = SportsLeague.all
+      @sports_leagues = SportsLeague.order(:championship_date)
     end
 
     def show

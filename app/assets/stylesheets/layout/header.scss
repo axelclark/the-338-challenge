@@ -8,13 +8,13 @@ nav {
   ul {
     max-width: $max-width;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
   
   li {
-    float: left;
+    flex-basis: 100px;
   }
 
   li a {
