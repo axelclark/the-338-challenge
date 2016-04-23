@@ -1,4 +1,28 @@
-<% @sports_leagues.each do |sports_league| %>
-  <%= link_to sports_league.name, sports_league_path(sports_league) %>
-  <%= sports_league.championship_date %>
-<% end %>
+<div class="container">
+  <section class="league-index-title">
+    <h1>Sports Leagues</h1>
+  </section>
+  <section class="leagues-collection">
+    <table class="leagues-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Waiver Deadline</th>
+          <th>Trade Deadline</th>
+          <th>Championship Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sports_leagues.each do |league| %>
+          <tr>
+            <td><%= link_to league.name, 
+              sports_league_path(league) %></td>
+            <td><%= league.waiver_deadline %></td>
+            <td><%= league.trade_deadline %></td>
+            <td><%= league.championship_date%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

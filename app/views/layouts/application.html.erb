@@ -4,9 +4,13 @@
   <%= render "layouts/head_contents" %>
 </head>
 <body class="<%= body_class %>">
-  <%= render "layouts/header" %>
-  <%= render "flashes" -%>
-  <%= yield %>
+  <header>
+    <%= render "layouts/header" %>
+    <%= render "flashes" -%>
+  </header>
+  <main class="content">
+    <%= yield %>
+  </main>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
 </body>
