@@ -2,7 +2,7 @@
 # Date and Time formats
 #
 {
-  simple: '%B %d, %Y',
+  simple: '%B %e',
 }.each do |k, v|
   Date::DATE_FORMATS[k] = v
   Time::DATE_FORMATS[k] = v
