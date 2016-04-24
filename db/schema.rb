@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424015109) do
+ActiveRecord::Schema.define(version: 20160424125736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,22 @@ ActiveRecord::Schema.define(version: 20160424015109) do
 
   create_table "fantasy_players", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "sports_league_id"
-    t.integer  "final_ranking",    default: 0
   end
 
   add_index "fantasy_players", ["sports_league_id"], name: "index_fantasy_players_on_sports_league_id", using: :btree
+
+  create_table "final_rankings", force: :cascade do |t|
+    t.integer  "fantasy_player_id"
+    t.integer  "year"
+    t.integer  "rank"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "final_rankings", ["fantasy_player_id"], name: "index_final_rankings_on_fantasy_player_id", using: :btree
 
   create_table "sports_leagues", force: :cascade do |t|
     t.string   "name"
@@ -52,4 +61,5 @@ ActiveRecord::Schema.define(version: 20160424015109) do
   end
 
   add_foreign_key "fantasy_players", "sports_leagues"
+  add_foreign_key "final_rankings", "fantasy_players"
 end

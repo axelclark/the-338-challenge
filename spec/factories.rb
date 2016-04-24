@@ -1,4 +1,5 @@
 FactoryGirl.define do
+  
   factory :sports_league do
     name "NFL"
     waiver_deadline "2016-11-11"
@@ -9,6 +10,11 @@ FactoryGirl.define do
   factory :fantasy_player do
     name "Seattle Seahawks"
     sports_league
-    final_ranking 1
+  end
+  
+  factory :final_ranking do
+    fantasy_player 
+    year 2016
+    rank 1
   end
 end

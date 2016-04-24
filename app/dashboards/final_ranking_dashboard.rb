@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class FantasyPlayerDashboard < Administrate::BaseDashboard
+class FinalRankingDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,10 +8,10 @@ class FantasyPlayerDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    sports_league: Field::BelongsTo,
+    fantasy_player: Field::BelongsTo,
     id: Field::Number,
-    name: Field::String,
-    final_rankings: Field::HasMany,
+    year: Field::Number,
+    rank: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -22,17 +22,19 @@ class FantasyPlayerDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :name,
-    :sports_league,
-    :final_rankings,
+    :fantasy_player,
+    :id,
+    :year,
+    :rank,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :name,
-    :sports_league,
-    :final_rankings,
+    :fantasy_player,
+    :id,
+    :year,
+    :rank,
     :created_at,
     :updated_at,
   ].freeze
@@ -41,14 +43,15 @@ class FantasyPlayerDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :name,
-    :sports_league,
+    :fantasy_player,
+    :year,
+    :rank,
   ].freeze
 
-  # Overwrite this method to customize how fantasy players are displayed
+  # Overwrite this method to customize how final rankings are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(fantasy_player)
-    "#{fantasy_player.name}"
-  end
+  # def display_resource(final_ranking)
+  #   "FinalRanking ##{final_ranking.id}"
+  # end
 end
