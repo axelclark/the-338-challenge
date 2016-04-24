@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :sports_leagues, only: [:index, :show]
-
+  resources :fantasy_teams, only: :index 
   # Also has high voltage routes.
 
 end

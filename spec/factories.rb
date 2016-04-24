@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :fantasy_team do
+    name "Brown"
+  end
   
   factory :sports_league do
     name "NFL"
