@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SportsLeague, type: :model do
+describe SportsLeague do
   context "validations" do
     # Associations
     it { should have_many(:fantasy_players) }
