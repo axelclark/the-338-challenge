@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @sports_league.fantasy_players
+      <% @sports_league.fantasy_players.includes(:final_rankings)
         .order("fantasy_players.name").each do |players| %>
         <tr>
           <td><%= players.name %></td>
