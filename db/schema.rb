@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424192115) do
+ActiveRecord::Schema.define(version: 20160424231714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 20160424192115) do
 
   add_index "final_rankings", ["fantasy_player_id"], name: "index_final_rankings_on_fantasy_player_id", using: :btree
 
+  create_table "roster_positions", force: :cascade do |t|
+    t.integer  "fantasy_player_id"
+    t.integer  "fantasy_team_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "roster_positions", ["fantasy_player_id"], name: "index_roster_positions_on_fantasy_player_id", using: :btree
+  add_index "roster_positions", ["fantasy_team_id"], name: "index_roster_positions_on_fantasy_team_id", using: :btree
+
   create_table "sports_leagues", force: :cascade do |t|
     t.string   "name"
     t.date     "waiver_deadline"
@@ -68,4 +78,6 @@ ActiveRecord::Schema.define(version: 20160424192115) do
 
   add_foreign_key "fantasy_players", "sports_leagues"
   add_foreign_key "final_rankings", "fantasy_players"
+  add_foreign_key "roster_positions", "fantasy_players"
+  add_foreign_key "roster_positions", "fantasy_teams"
 end

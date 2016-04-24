@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :roster_position do
+    fantasy_player nil
+    fantasy_team nil
+  end
   factory :fantasy_team do
     name "Brown"
   end

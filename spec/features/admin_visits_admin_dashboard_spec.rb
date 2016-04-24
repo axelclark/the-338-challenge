@@ -37,11 +37,24 @@ feature "admin visits admin dashboard" do
       text: "FinalRanking was successfully created.")
   end
 
+  scenario "and adds fantasy player to fantasy team" do
+    create(:fantasy_player)
+    create(:fantasy_team)
+    create(:roster_position)
+
+    visit admin_roster_positions_path
+    click_on "New roster position"
+    select "Seattle Seahawks", from: "Fantasy player"
+    select "Brown", from: "Fantasy team"
+
+    expect(page).to have_css(".flash",
+      text: "RosterPosition was successfully created.")
+  end
+
   def visit_admin_to_edit(model)
     visit root_path
     click_on "Admin"
     click_on model 
     click_on "Edit" 
   end
-
 end
