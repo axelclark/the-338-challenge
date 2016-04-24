@@ -23,7 +23,6 @@ class FinalRankingDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :fantasy_player,
-    :id,
     :year,
     :rank,
   ].freeze
@@ -32,7 +31,6 @@ class FinalRankingDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :fantasy_player,
-    :id,
     :year,
     :rank,
     :created_at,
