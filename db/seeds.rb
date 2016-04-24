@@ -22,7 +22,6 @@ CSV.foreach("db/csv/fantasy_players.csv") do |row|
   @sports_league = SportsLeague.find(row[1])
   FantasyPlayer.create!({
     :name => row[0],
-    :final_ranking => row[2],
     :sports_league => @sports_league
   })
 end
