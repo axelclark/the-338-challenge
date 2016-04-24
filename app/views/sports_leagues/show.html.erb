@@ -20,10 +20,11 @@
         </thead>
         <tbody>
           <% @sports_league.fantasy_players
-              .order("fantasy_players.name").each do |players| %>
+            .order("fantasy_players.name").each do |players| %>
             <tr>
               <td><%= players.name %></td>
-              <td class="ranking"><%= players.final_ranking %></td>
+              <td class="ranking"><%= players
+                .final_ranking.to_s.tr('0','-') %></td>
               <td></td>
             </tr>
           <% end %>
