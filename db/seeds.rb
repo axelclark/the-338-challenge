@@ -4,14 +4,10 @@ require 'csv'
 #   headers: true, header_converters: :symbol, converters: :all}) do |row|
 #   FantasyLeague.create(row.to_hash)
 # end
-
-# CSV.foreach("db/csv/rosters.csv") do |row|
-#   @fantasy_league = FantasyLeague.find(row[1])
-#   Roster.create!({
-#     :fantasy_team_name => row[0],
-#     :fantasy_league => @fantasy_league
-#   })
-# end
+#
+CSV.foreach("db/csv/fantasy_teams.csv") do |row|
+  FantasyTeam.create!({ :name => row[0] }) 
+end
 
 CSV.foreach("db/csv/sports_leagues.csv", { encoding: "UTF-8", 
   headers: true, header_converters: :symbol, converters: :all}) do |row|
@@ -34,3 +30,9 @@ end
 #     :sports_team => @sports_team      
 #   })
 # end
+
+  # @fantasy_league = FantasyLeague.find(row[1])
+  # Roster.create!({
+  #   :fantasy_team_name => row[0],
+  #   :fantasy_league => @fantasy_league
+  # })

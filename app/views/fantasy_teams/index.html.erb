@@ -10,7 +10,13 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @fantasy_teams %>
+        <% @fantasy_teams.each do |team| %>
+        <tr>
+          <td>
+            <%= link_to team.name, "#" %>
+          </td>
+        </tr>
+        <% end %>
       </tbody>
     </table>
   </section>
