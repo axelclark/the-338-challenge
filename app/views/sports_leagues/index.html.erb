@@ -3,26 +3,6 @@
     <h1>Sports Leagues</h1>
   </section>
   <section class="leagues-collection">
-    <table class="leagues-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Waiver Deadline</th>
-          <th>Trade Deadline</th>
-          <th>Championship Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @sports_leagues.each do |league| %>
-          <tr>
-            <td><%= link_to league.name, 
-              sports_league_path(league) %></td>
-            <td><%= league.waiver_deadline.to_s(:simple) %></td>
-            <td><%= league.trade_deadline.to_s(:simple) %></td>
-            <td><%= league.championship_date.to_s(:simple)%></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render "leagues_table" %>
   </section>
 </div>
