@@ -7,6 +7,6 @@ feature "user views sports leagues" do
     visit sports_leagues_path
 
     expect(page).to have_content "NFL"
-    expect(page).to have_content "February 1, 2017"
+    expect(page).to have_content "February 1"
   end
 end
