@@ -1,0 +1,7 @@
+<h1><%= @sports_league.name %></h1>
+<div class="league-dates">
+  <p>Waiver Deadline: <%= @sports_league.waiver_deadline.to_s(:long) %></p>
+  <p>Trade Deadline: <%= @sports_league.trade_deadline.to_s(:long) %></p>
+  <p class="championship">Championship Date: 
+    <%= @sports_league.championship_date.to_s(:long) %></p>
+</div>
