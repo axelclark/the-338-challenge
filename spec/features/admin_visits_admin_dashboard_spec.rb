@@ -40,12 +40,12 @@ feature "admin visits admin dashboard" do
   scenario "and adds fantasy player to fantasy team" do
     create(:fantasy_player)
     create(:fantasy_team)
-    create(:roster_position)
 
     visit admin_roster_positions_path
     click_on "New roster position"
     select "Seattle Seahawks", from: "Fantasy player"
     select "Brown", from: "Fantasy team"
+    click_on "Create Roster position"
 
     expect(page).to have_css(".flash",
       text: "RosterPosition was successfully created.")
