@@ -1,0 +1,20 @@
+<div class="players-container">
+  <table class="players-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Sports League</th>
+        <th>Final Ranking</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @fantasy_players.each do |players| %>
+        <tr>
+          <td><%= players.fantasy_player_name %></td>
+          <td><%= players.sports_league_name %></td>
+          <td><%= players.rank %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
