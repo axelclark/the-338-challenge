@@ -6,9 +6,21 @@ class FantasyPlayer < ActiveRecord::Base
   
   validates :name, presence: true
 
+  def self.by_name
+    order(:name)
+  end
+
   def with_rank
     unless final_rankings.empty?
       final_rankings.last.rank
+    else
+      '-'
+    end
+  end
+  
+  def with_owner
+    unless fantasy_teams.empty?
+      fantasy_teams.last.name
     else
       '-'
     end

@@ -31,6 +31,8 @@ feature "admin visits admin dashboard" do
     select "Seattle Seahawks", from: "Fantasy player"
     fill_in "Year", with: 2016 
     fill_in "Rank", with: 1 
+    fill_in "Points", with: 8
+    fill_in "Winnings", with: 25
     click_on "Create Final ranking"
 
     expect(page).to have_css(".flash", 

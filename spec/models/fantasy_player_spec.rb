@@ -9,6 +9,18 @@ describe FantasyPlayer do
   # Validations
   it { should validate_presence_of(:name) }
 
+  describe "self.by_name" do
+    it "returns fantasy teams sorted by their names" do
+      create(:fantasy_player, name: "A")
+      create(:fantasy_player, name: "C")
+      create(:fantasy_player, name: "B")
+
+      result = FantasyPlayer.by_name.map(&:name)
+
+      expect(result).to eq %w(A B C)
+    end
+  end
+
   describe "#with_rank" do
     context "with an associated final ranking" do
       it "returns the rank" do
@@ -25,6 +37,28 @@ describe FantasyPlayer do
         unranked_sports_team = create(:fantasy_player)
 
         result = unranked_sports_team.with_rank
+
+        expect(result).to eq("-")
+      end
+    end
+  end
+  
+  describe "#with_owner" do
+    context "with an associated fantasy team" do
+      it "returns the owner's name" do
+        fantasy_player = create(:fantasy_player_with_owner)
+
+        result = fantasy_player.with_owner
+
+        expect(result).to eq("Brown")
+      end
+    end
+
+    context "without an associated fantasy team" do
+      it "returns '-'" do
+        fantasy_player = create(:fantasy_player)
+
+        result = fantasy_player.with_owner
 
         expect(result).to eq("-")
       end

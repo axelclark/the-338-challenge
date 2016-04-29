@@ -23,6 +23,14 @@ FactoryGirl.define do
         create(:final_ranking, fantasy_player: fantasy_player)
       end
     end
+    
+    factory :fantasy_player_with_owner do
+      after(:create) do |fantasy_player|
+        fantasy_team = create(:fantasy_team)
+        create(:roster_position, 
+               fantasy_player: fantasy_player, fantasy_team: fantasy_team)
+      end
+    end
   end
   
   factory :final_ranking do

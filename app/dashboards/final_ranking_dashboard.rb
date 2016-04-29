@@ -12,6 +12,8 @@ class FinalRankingDashboard < Administrate::BaseDashboard
     id: Field::Number,
     year: Field::Number,
     rank: Field::Number,
+    points: Field::Number,
+    winnings: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -33,6 +35,8 @@ class FinalRankingDashboard < Administrate::BaseDashboard
     :fantasy_player,
     :year,
     :rank,
+    :points,
+    :winnings,
     :created_at,
     :updated_at,
   ].freeze
@@ -44,6 +48,8 @@ class FinalRankingDashboard < Administrate::BaseDashboard
     :fantasy_player,
     :year,
     :rank,
+    :points,
+    :winnings,
   ].freeze
 
   # Overwrite this method to customize how final rankings are displayed
