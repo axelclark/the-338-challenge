@@ -5,4 +5,12 @@ class FantasyPlayer < ActiveRecord::Base
   has_many :fantasy_teams, through: :roster_positions
   
   validates :name, presence: true
+
+  def with_rank
+    unless final_rankings.empty?
+      final_rankings.last.rank
+    else
+      '-'
+    end
+  end
 end

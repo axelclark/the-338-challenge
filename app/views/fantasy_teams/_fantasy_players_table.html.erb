@@ -8,11 +8,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @fantasy_players.each do |players| %>
+      <% @fantasy_team.fantasy_players.each do |player| %>
         <tr>
-          <td><%= players.fantasy_player_name %></td>
-          <td><%= players.sports_league_name %></td>
-          <td><%= players.rank %></td>
+          <td><%= player.name %></td>
+          <td><%= player.sports_league.name %></td>
+          <td><%= player.with_rank %></td>
         </tr>
       <% end %>
     </tbody>

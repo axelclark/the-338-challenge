@@ -17,6 +17,12 @@ FactoryGirl.define do
   factory :fantasy_player do
     name "Seattle Seahawks"
     sports_league
+
+    factory :ranked_fantasy_player do
+      after(:create) do |fantasy_player|
+        create(:final_ranking, fantasy_player: fantasy_player)
+      end
+    end
   end
   
   factory :final_ranking do
