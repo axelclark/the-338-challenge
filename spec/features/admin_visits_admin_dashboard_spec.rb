@@ -53,6 +53,18 @@ feature "admin visits admin dashboard" do
       text: "RosterPosition was successfully created.")
   end
 
+  scenario "and creates a fantasy league" do
+
+    visit admin_fantasy_league_path
+    click_on "New fantasy league"
+    fill_in "Year", with: 2016 
+    fill_in "Division", with: "A" 
+    click_on "Create Fantasy league"
+
+    expect(page).to have_css(".flash", 
+      text: "FantasyLeague was successfully created.")
+  end
+  
   def visit_admin_to_edit(model)
     visit root_path
     click_on "Admin"
