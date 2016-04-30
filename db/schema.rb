@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430000121) do
+ActiveRecord::Schema.define(version: 20160430202041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20160430000121) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "fantasy_leagues", force: :cascade do |t|
+    t.string   "division"
+    t.integer  "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "fantasy_players", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",       null: false
@@ -43,9 +50,12 @@ ActiveRecord::Schema.define(version: 20160430000121) do
 
   create_table "fantasy_teams", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "fantasy_league_id"
   end
+
+  add_index "fantasy_teams", ["fantasy_league_id"], name: "index_fantasy_teams_on_fantasy_league_id", using: :btree
 
   create_table "final_rankings", force: :cascade do |t|
     t.integer  "fantasy_player_id"
@@ -79,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160430000121) do
   end
 
   add_foreign_key "fantasy_players", "sports_leagues"
+  add_foreign_key "fantasy_teams", "fantasy_leagues"
   add_foreign_key "final_rankings", "fantasy_players"
   add_foreign_key "roster_positions", "fantasy_players"
   add_foreign_key "roster_positions", "fantasy_teams"

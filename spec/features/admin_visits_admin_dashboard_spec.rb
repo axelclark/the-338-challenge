@@ -55,7 +55,7 @@ feature "admin visits admin dashboard" do
 
   scenario "and creates a fantasy league" do
 
-    visit admin_fantasy_league_path
+    visit admin_fantasy_leagues_path
     click_on "New fantasy league"
     fill_in "Year", with: 2016 
     fill_in "Division", with: "A" 

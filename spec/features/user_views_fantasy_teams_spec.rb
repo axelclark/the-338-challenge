@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user views sports leagues" do
+feature "user views fantasy teams" do
   scenario "and sees relevant details on the page" do
     fantasy_team = create(:fantasy_team)
     

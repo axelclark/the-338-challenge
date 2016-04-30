@@ -1,8 +1,14 @@
 FactoryGirl.define do
+  factory :fantasy_league do
+    division "A"
+    year 2016
+  end
+
   factory :roster_position do
     fantasy_player
     fantasy_team
   end
+  
   factory :fantasy_team do
     name "Brown"
   end
