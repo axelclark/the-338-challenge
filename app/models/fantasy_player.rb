@@ -18,6 +18,22 @@ class FantasyPlayer < ActiveRecord::Base
     end
   end
   
+  def with_points
+    unless final_rankings.empty?
+      final_rankings.last.points
+    else
+      '-'
+    end
+  end
+  
+  def with_winnings
+    unless final_rankings.empty?
+      final_rankings.last.winnings
+    else
+      '-'
+    end
+  end
+  
   def with_owner
     unless fantasy_teams.empty?
       fantasy_teams.last.name

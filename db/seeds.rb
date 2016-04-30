@@ -18,7 +18,18 @@ CSV.foreach("db/csv/fantasy_players.csv") do |row|
   sports_league = SportsLeague.find(row[1])
   FantasyPlayer.create!({
     :name => row[0],
-    :sports_league => sports_league
+    :sports_league => sports_league,
+  })
+end
+
+CSV.foreach("db/csv/final_rankings.csv") do |row|
+  fantasy_player = FantasyPlayer.find(row[0])
+  FinalRanking.create!({
+    :fantasy_player => fantasy_player,
+    :year => row[1],
+    :rank => row[2],
+    :points => row[3],
+    :winnings => row[4],
   })
 end
 
@@ -27,7 +38,7 @@ CSV.foreach("db/csv/roster_positions.csv") do |row|
   fantasy_player = FantasyPlayer.find(row[1])
   RosterPosition.create!({
     :fantasy_team => fantasy_team,
-    :fantasy_player => fantasy_player
+    :fantasy_player => fantasy_player,
   })
 end
 

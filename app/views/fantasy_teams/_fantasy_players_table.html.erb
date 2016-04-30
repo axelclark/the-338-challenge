@@ -5,6 +5,8 @@
         <th>Name</th>
         <th>Sports League</th>
         <th>Final Ranking</th>
+        <th>Points</th>
+        <th>Winnings</th>
       </tr>
     </thead>
     <tbody>
@@ -13,6 +15,8 @@
           <td><%= player.name %></td>
           <td><%= player.sports_league.name %></td>
           <td><%= player.with_rank %></td>
+          <td><%= player.with_points %></td>
+          <td><%= player.with_winnings %></td>
         </tr>
       <% end %>
     </tbody>

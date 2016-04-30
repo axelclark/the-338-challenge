@@ -4,15 +4,19 @@
       <tr>
         <th>Name</th>
         <th>Final Ranking</th>
+        <th>Points</th>
+        <th>Winnings</th>
         <th>Owner</th>
       </tr>
     </thead>
     <tbody>
-      <% @sports_league.fantasy_players.by_name.each do |players| %>
+      <% @sports_league.fantasy_players.by_name.each do |player| %>
         <tr>
-          <td><%= players.name %></td>
-          <td class="ranking"><%= players.with_rank %></td>
-          <td><%= players.with_owner %></td>
+          <td><%= player.name %></td>
+          <td class="ranking"><%= player.with_rank %></td>
+          <td><%= player.with_points %></td>
+          <td><%= player.with_winnings %></td>
+          <td><%= player.with_owner %></td>
         </tr>
       <% end %>
     </tbody>

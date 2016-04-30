@@ -37,5 +37,7 @@ FactoryGirl.define do
     fantasy_player 
     year 2016
     rank 1
+    points 8
+    winnings 25
   end
 end
