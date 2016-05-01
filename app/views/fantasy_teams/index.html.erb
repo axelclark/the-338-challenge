@@ -7,14 +7,14 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Points</th>
         </tr>
       </thead>
       <tbody>
         <% @fantasy_teams.each do |team| %>
         <tr>
-          <td>
-            <%= link_to team.name, fantasy_team_path(team) %>
-          </td>
+          <td><%= link_to team.name, fantasy_team_path(team) %></td>
+          <td><%= team.points %></td>
         </tr>
         <% end %>
       </tbody>
