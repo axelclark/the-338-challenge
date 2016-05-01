@@ -24,7 +24,7 @@ feature "admin visits admin dashboard" do
   end
 
   scenario "and creates final ranking for fantasy player" do
-    fantasy_player = create(:fantasy_player)
+    fantasy_player = create(:fantasy_player, name: "Seattle Seahawks")
 
     visit admin_final_rankings_path
     click_on "New final ranking"
@@ -40,8 +40,8 @@ feature "admin visits admin dashboard" do
   end
 
   scenario "and adds fantasy player to fantasy team" do
-    create(:fantasy_player)
-    create(:fantasy_team)
+    create(:fantasy_player, name: "Seattle Seahawks")
+    create(:fantasy_team, name: "Brown")
 
     visit admin_roster_positions_path
     click_on "New roster position"

@@ -24,9 +24,11 @@ describe FantasyPlayer do
   describe "#with_rank" do
     context "with an associated final ranking" do
       it "returns the rank" do
-        ranked_sports_team = create(:ranked_fantasy_player)
+        fantasy_player = create(:fantasy_player)
+        create(:final_ranking, :finished_first, 
+               fantasy_player: fantasy_player)
 
-        result = ranked_sports_team.with_rank
+        result = fantasy_player.with_rank
 
         expect(result).to eq(1)
       end
@@ -46,9 +48,12 @@ describe FantasyPlayer do
   describe "#with_points" do
     context "with an associated final ranking" do
       it "returns the points" do
-        ranked_sports_team = create(:ranked_fantasy_player)
+        fantasy_player = create(:fantasy_player)
+        create(:final_ranking, :finished_first, 
+               fantasy_player: fantasy_player)
 
-        result = ranked_sports_team.with_points
+
+        result = fantasy_player.with_points
 
         expect(result).to eq(8)
       end
@@ -68,9 +73,11 @@ describe FantasyPlayer do
   describe "#with_winnings" do
     context "with an associated final ranking" do
       it "returns the winnings" do
-        ranked_sports_team = create(:ranked_fantasy_player)
+        fantasy_player = create(:fantasy_player)
+        create(:final_ranking, :finished_first, 
+               fantasy_player: fantasy_player)
 
-        result = ranked_sports_team.with_winnings
+        result = fantasy_player.with_winnings
 
         expect(result).to eq(25)
       end
@@ -90,7 +97,10 @@ describe FantasyPlayer do
   describe "#with_owner" do
     context "with an associated fantasy team" do
       it "returns the owner's name" do
-        fantasy_player = create(:fantasy_player_with_owner)
+        fantasy_player = create(:fantasy_player)
+        fantasy_team = create(:fantasy_team, name: "Brown")
+        create(:roster_position, fantasy_player: fantasy_player,
+               fantasy_team: fantasy_team)
 
         result = fantasy_player.with_owner
 

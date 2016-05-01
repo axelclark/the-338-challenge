@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  sequence :name do |n|
+    "name #{n}"
+  end
+  
   factory :fantasy_league do
     division "A"
     year 2016
@@ -10,40 +14,27 @@ FactoryGirl.define do
   end
   
   factory :fantasy_team do
-    name "Brown"
+    name
   end
   
   factory :sports_league do
-    name "NFL"
-    waiver_deadline "2016-11-11"
-    trade_deadline "2016-11-20"
+    name
     championship_date "2017-02-01"
   end
 
   factory :fantasy_player do
-    name "Seattle Seahawks"
+    name
     sports_league
-
-    factory :ranked_fantasy_player do
-      after(:create) do |fantasy_player|
-        create(:final_ranking, fantasy_player: fantasy_player)
-      end
-    end
-    
-    factory :fantasy_player_with_owner do
-      after(:create) do |fantasy_player|
-        fantasy_team = create(:fantasy_team)
-        create(:roster_position, 
-               fantasy_player: fantasy_player, fantasy_team: fantasy_team)
-      end
-    end
   end
   
   factory :final_ranking do
     fantasy_player 
     year 2016
-    rank 1
-    points 8
-    winnings 25
+
+    trait :finished_first do
+      rank 1
+      points 8
+      winnings 25
+    end
   end
 end

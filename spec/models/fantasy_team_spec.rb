@@ -7,7 +7,8 @@ describe FantasyTeam do
   
   describe "#points" do
     it "returns the total points for a fantasy team" do
-      fantasy_player = create(:ranked_fantasy_player)
+      fantasy_player = create(:fantasy_player)
+      create(:final_ranking, :finished_first, fantasy_player: fantasy_player)
       fantasy_team = create(:fantasy_team)
       create(:roster_position, fantasy_player: fantasy_player, 
              fantasy_team: fantasy_team)
