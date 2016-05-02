@@ -5,8 +5,19 @@ require 'csv'
 #   FantasyLeague.create(row.to_hash)
 # end
 #
+CSV.foreach("db/csv/fantasy_leagues.csv") do |row|
+  FantasyLeague.create!({ 
+    :year => row[0],
+    :division => row[1],
+  }) 
+end
+
 CSV.foreach("db/csv/fantasy_teams.csv") do |row|
-  FantasyTeam.create!({ :name => row[0] }) 
+  fantasy_league = FantasyLeague.find(row[1])
+  FantasyTeam.create!({ 
+    :name => row[0],
+    :fantasy_league => fantasy_league,
+  }) 
 end
 
 CSV.foreach("db/csv/sports_leagues.csv", { encoding: "UTF-8", 
