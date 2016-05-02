@@ -10,6 +10,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     roster_positions: Field::HasMany,
     fantasy_players: Field::HasMany,
+    fantasy_league: Field::BelongsTo,
     id: Field::Number,
     name: Field::String,
     created_at: Field::DateTime,
@@ -25,13 +26,14 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
     :name,
     :roster_positions,
     :fantasy_players,
+    :fantasy_league,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :name,
-    :roster_positions,
+    :fantasy_league,
     :fantasy_players,
     :created_at,
     :updated_at,
@@ -42,6 +44,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :name,
+    :fantasy_league,
   ].freeze
 
   # Overwrite this method to customize how fantasy teams are displayed

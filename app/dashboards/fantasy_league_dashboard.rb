@@ -11,6 +11,7 @@ class FantasyLeagueDashboard < Administrate::BaseDashboard
     id: Field::Number,
     division: Field::String,
     year: Field::Number,
+    fantasy_teams: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -24,6 +25,7 @@ class FantasyLeagueDashboard < Administrate::BaseDashboard
     :id,
     :division,
     :year,
+    :fantasy_teams,
     :created_at,
   ].freeze
 
@@ -35,6 +37,7 @@ class FantasyLeagueDashboard < Administrate::BaseDashboard
     :year,
     :created_at,
     :updated_at,
+    :fantasy_teams,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -43,12 +46,13 @@ class FantasyLeagueDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :division,
     :year,
+    :fantasy_teams,
   ].freeze
 
   # Overwrite this method to customize how fantasy leagues are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(fantasy_league)
-  #   "FantasyLeague ##{fantasy_league.id}"
-  # end
+  def display_resource(fantasy_league)
+    "#{fantasy_league.name}"
+  end
 end
