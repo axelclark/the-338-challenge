@@ -3,14 +3,14 @@ class FantasyLeaguesController < ApplicationController
     @fantasy_leagues = FantasyLeague.all
   end
 
-  # def show
-  #   @fantasy_league = FantasyLeague.find(fantasy_league_params)
-  # end
+  def show
+    @fantasy_league = FantasyLeague.find(fantasy_league_params)
+  end
 
-#   private
+  private
 
-#     def fantasy_league_params
-#       params[:id]
-#     end
+    def fantasy_league_params
+      params[:id]
+    end
 
 end

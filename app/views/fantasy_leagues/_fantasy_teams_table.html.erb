@@ -1,0 +1,23 @@
+<div class="teams-container">
+  <table class="teams-table">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Points</th>
+        <th>Winnings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @fantasy_league.fantasy_teams.with_points_and_winnings.
+        each_with_index do |team, index| %>
+        <tr>
+          <td><%= index +1 %></td>
+          <td><%= link_to team.name, fantasy_team_path(team) %></td>
+          <td><%= team.points %></td>
+          <td><%= team.winnings %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
