@@ -14,4 +14,16 @@
   <li class="admin">
     <%= link_to "Admin", admin_root_path %>
   </li>
+  <% if signed_in? %>
+    <li class="user">
+      Signed in as: <%= current_user.email %>
+    </li>
+    <li class="sign_out">
+      <%= button_to 'Sign out', sign_out_path, method: :delete %>
+    </li>
+  <% else %>
+    <li class="sign_in">
+      <%= link_to 'Sign in', sign_in_path %>
+    </li>
+  <% end %>
 </ul>
