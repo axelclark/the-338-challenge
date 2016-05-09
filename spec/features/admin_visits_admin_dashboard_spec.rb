@@ -76,6 +76,21 @@ feature "admin visits admin dashboard" do
       text: "FantasyLeague was successfully created.")
   end
   
+  scenario "and updates a user to an admin" do
+    create_admin
+    user = create(:user)
+
+    sign_in_with("admin@example.com", "password")
+    visit "/admin/users/#{user.id}"
+    click_on "Edit"
+    check "Admin"
+    click_on "Update User"
+
+    expect(page).to have_css(".flash", 
+      text: "User was successfully updated.")
+  end
+  
+  
   def create_admin
     admin = create(:admin, email: "admin@example.com", password: "password")
   end
