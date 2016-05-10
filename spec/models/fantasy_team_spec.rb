@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe FantasyTeam do
-  it { should have_many(:roster_positions) }
+  it { should have_many(:roster_positions).dependent(:destroy) }
   it { should have_many(:fantasy_players).through(:roster_positions) }
   it { should belong_to(:fantasy_league) }
+  it { should belong_to(:franchise) }
   
   describe "self.with_points_and_winnings" do
     it "returns fantasy teams sorted by their points" do

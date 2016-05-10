@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :franchise do
+    name "MyString"
+  end
   sequence :email do |n|
     "user#{n}@example.com"
   end

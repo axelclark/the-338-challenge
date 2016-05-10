@@ -1,8 +1,8 @@
 class FantasyTeam < ActiveRecord::Base
-  has_many :roster_positions
+  has_many :roster_positions, dependent: :destroy
   has_many :fantasy_players, through: :roster_positions
-
   belongs_to :fantasy_league
+  belongs_to :franchise
 
   def self.with_points_and_winnings
     joins("

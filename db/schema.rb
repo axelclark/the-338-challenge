@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507194406) do
+ActiveRecord::Schema.define(version: 20160510002916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,11 @@ ActiveRecord::Schema.define(version: 20160507194406) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "fantasy_league_id"
+    t.integer  "franchise_id"
   end
 
   add_index "fantasy_teams", ["fantasy_league_id"], name: "index_fantasy_teams_on_fantasy_league_id", using: :btree
+  add_index "fantasy_teams", ["franchise_id"], name: "index_fantasy_teams_on_franchise_id", using: :btree
 
   create_table "final_rankings", force: :cascade do |t|
     t.integer  "fantasy_player_id"
@@ -68,6 +70,12 @@ ActiveRecord::Schema.define(version: 20160507194406) do
   end
 
   add_index "final_rankings", ["fantasy_player_id"], name: "index_final_rankings_on_fantasy_player_id", using: :btree
+
+  create_table "franchises", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roster_positions", force: :cascade do |t|
     t.integer  "fantasy_player_id"
@@ -96,14 +104,18 @@ ActiveRecord::Schema.define(version: 20160507194406) do
     t.string   "encrypted_password", limit: 128,                 null: false
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128,                 null: false
+    t.integer  "franchise_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["franchise_id"], name: "index_users_on_franchise_id", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
   add_foreign_key "fantasy_players", "sports_leagues"
   add_foreign_key "fantasy_teams", "fantasy_leagues"
+  add_foreign_key "fantasy_teams", "franchises"
   add_foreign_key "final_rankings", "fantasy_players"
   add_foreign_key "roster_positions", "fantasy_players"
   add_foreign_key "roster_positions", "fantasy_teams"
+  add_foreign_key "users", "franchises"
 end
