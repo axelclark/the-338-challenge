@@ -1,10 +1,4 @@
 require 'csv'
-
-# CSV.foreach("db/csv/fantasy_leagues.csv", { encoding: "UTF-8", 
-#   headers: true, header_converters: :symbol, converters: :all}) do |row|
-#   FantasyLeague.create(row.to_hash)
-# end
-#
 CSV.foreach("db/csv/fantasy_leagues.csv") do |row|
   FantasyLeague.create!({ 
     :year => row[0],
@@ -12,11 +6,19 @@ CSV.foreach("db/csv/fantasy_leagues.csv") do |row|
   }) 
 end
 
+CSV.foreach("db/csv/franchises.csv") do |row|
+  Franchise.create!({ 
+    :name => row[0],
+  }) 
+end
+
 CSV.foreach("db/csv/fantasy_teams.csv") do |row|
   fantasy_league = FantasyLeague.find(row[1])
+  franchise = Franchise.find(row[2])
   FantasyTeam.create!({ 
     :name => row[0],
     :fantasy_league => fantasy_league,
+    :franchise => franchise,
   }) 
 end
 
@@ -46,15 +48,15 @@ end
 
 CSV.foreach("db/csv/roster_positions.csv") do |row|
   fantasy_team = FantasyTeam.find(row[0])
-  fantasy_player = FantasyPlayer.find(row[1])
+  fantasy_player = FantasyPlayer.find(row[2])
   RosterPosition.create!({
     :fantasy_team => fantasy_team,
     :fantasy_player => fantasy_player,
   })
 end
 
-  # @fantasy_league = FantasyLeague.find(row[1])
-  # Roster.create!({
-  #   :fantasy_team_name => row[0],
-  #   :fantasy_league => @fantasy_league
-  # })
+User.create(
+  :email => "axelclark2@yahoo.com",
+  :password => "password",
+  :admin => true
+)
