@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :final_rankings
       resources :fantasy_teams
       resources :fantasy_leagues
+      resources :franchises
       resources :roster_positions
       resources :sports_leagues
       resources :users

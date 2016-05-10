@@ -90,6 +90,18 @@ feature "admin visits admin dashboard" do
       text: "User was successfully updated.")
   end
   
+  scenario "and updates a franchise name" do
+    create_admin
+    create(:franchise, name: "Swin/Mara")
+
+    sign_in_with("admin@example.com", "password")
+    visit_admin_to_edit("Franchises")
+    fill_in "Name", with: "The Consortium" 
+    click_on "Update Franchise"
+
+    expect(page).to have_css(".flash", 
+      text: "Franchise was successfully updated.")
+  end
   
   def create_admin
     admin = create(:admin, email: "admin@example.com", password: "password")

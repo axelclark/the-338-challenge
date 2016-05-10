@@ -11,6 +11,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
     roster_positions: Field::HasMany,
     fantasy_players: Field::HasMany,
     fantasy_league: Field::BelongsTo,
+    franchise: Field::BelongsTo,
     id: Field::Number,
     name: Field::String,
     created_at: Field::DateTime,
@@ -24,7 +25,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :name,
-    :roster_positions,
+    :franchise,
     :fantasy_players,
     :fantasy_league,
   ].freeze
@@ -33,6 +34,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :name,
+    :franchise,
     :fantasy_league,
     :fantasy_players,
     :created_at,
@@ -44,6 +46,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :name,
+    :franchise,
     :fantasy_league,
   ].freeze
 
