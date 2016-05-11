@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :active_player do
+    fantasy_player nil
+    fantasy_league nil
+  end
   factory :franchise do
     name "MyString"
   end

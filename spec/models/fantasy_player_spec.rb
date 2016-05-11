@@ -2,9 +2,12 @@ require 'rails_helper'
 
 describe FantasyPlayer do
   # Associations
-  it { should belong_to(:sports_league) }
+  it { should have_many(:active_players).dependent(:destroy) }
+  it { should have_many(:fantasy_leagues).through(:active_players) }
+  it { should have_many(:fantasy_teams).through(:roster_positions) }
   it { should have_many(:final_rankings).dependent(:destroy) }
   it { should have_many(:roster_positions).dependent(:destroy) }
+  it { should belong_to(:sports_league) }
   
   # Validations
   it { should validate_presence_of(:name) }

@@ -3,6 +3,8 @@ require 'rails_helper'
 describe FantasyLeague do
   context "validations" do
     # Associations
+    it { should have_many(:active_players).dependent(:destroy) }
+    it { should have_many(:fantasy_players).through(:active_players) }
     it { should have_many(:fantasy_teams) }
     # Validations
     it { should validate_presence_of(:year) }
