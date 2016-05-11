@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Adminstrate routes
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     namespace :admin do
+      resources :active_players
       resources :fantasy_players
       resources :final_rankings
       resources :fantasy_teams

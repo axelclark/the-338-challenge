@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class RosterPositionDashboard < Administrate::BaseDashboard
+class ActivePlayerDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,7 +9,7 @@ class RosterPositionDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     fantasy_player: Field::BelongsTo,
-    fantasy_team: Field::BelongsTo,
+    fantasy_league: Field::BelongsTo,
     id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -21,16 +21,18 @@ class RosterPositionDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :fantasy_team,
     :fantasy_player,
+    :fantasy_league,
+    :id,
     :created_at,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :fantasy_team,
     :fantasy_player,
+    :fantasy_league,
+    :id,
     :created_at,
     :updated_at,
   ].freeze
@@ -39,14 +41,14 @@ class RosterPositionDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :fantasy_team,
     :fantasy_player,
+    :fantasy_league,
   ].freeze
 
-  # Overwrite this method to customize how roster positions are displayed
+  # Overwrite this method to customize how active players are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(roster_position)
-  #   "RosterPostion #{roster_position.id}"
+  # def display_resource(active_player)
+  #   "ActivePlayer ##{active_player.id}"
   # end
 end
