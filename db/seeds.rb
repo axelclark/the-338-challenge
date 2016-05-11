@@ -55,6 +55,15 @@ CSV.foreach("db/csv/roster_positions.csv") do |row|
   })
 end
 
+CSV.foreach("db/csv/active_players.csv") do |row|
+  fantasy_league = FantasyLeague.find(row[0])
+  fantasy_player = FantasyPlayer.find(row[1])
+  ActivePlayer.create!({
+    :fantasy_league => fantasy_league,
+    :fantasy_player => fantasy_player,
+  })
+end
+
 User.create(
   :email => "axelclark2@yahoo.com",
   :password => "password",
