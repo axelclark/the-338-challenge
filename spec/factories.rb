@@ -56,6 +56,7 @@ FactoryGirl.define do
   factory :user do
     email
     password "password"
+    admin false
 
     factory :admin do
       admin true
