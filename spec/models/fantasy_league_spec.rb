@@ -18,4 +18,17 @@ describe FantasyLeague do
       expect(result).to eq ("2016 Division A")
     end
   end
+  
+  describe ".only_league(league)" do
+    it "returns only one league by league id" do
+      fantasy_league_a = create :fantasy_league, division: "A"
+      fantasy_league_a_id = fantasy_league_a.id
+      create :fantasy_league, division: "B"
+
+      result = FantasyLeague.only_league(fantasy_league_a_id)
+
+      expect(result.map(&:division)).to eq(%w(A))
+    end
+  end
+
 end

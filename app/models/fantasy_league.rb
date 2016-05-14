@@ -8,4 +8,8 @@ class FantasyLeague < ActiveRecord::Base
   def name
     [year, "Division", division].join(" ")
   end
+  
+  def self.only_league(league)
+    where("fantasy_leagues.id = ?", league)
+  end
 end

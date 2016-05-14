@@ -1,7 +1,7 @@
 class RosterPositionsController < ApplicationController
   def index
     @roster_positions = RosterPosition.with_teams_and_players.
-      only_league(params_fantasy_league).
+      merge(FantasyLeague.only_league(params_fantasy_league)).
       order("fantasy_teams.name", "sports_leagues.championship_date").
       group_by(&:fantasy_team_name)
   end
