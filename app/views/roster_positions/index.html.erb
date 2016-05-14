@@ -1,19 +1,14 @@
-<div class="container">
   <div class="page-header">
     <h1>Rosters</h1>
-    <%= form_tag("/roster_positions", method: "get") do %>
-      <p>Change Fantasy League</p>
-      <%= select_tag(:fantasy_league_id, options_from_collection_for_select(FantasyLeague.all, :id, :name)) %>
-      <%= submit_tag "Update" %>
-    <% end %>  
+    <%= render "fantasy_league_select_form" %>
   </div>
   <section class="roster-positions-collection">
-    <div class="players-container">
-      <% @roster_positions.each do |teams, players| %>
-        <div>
+    <% @roster_positions.each do |teams, players| %>
+      <div class="fantasy-team-roster-positions">
+        <header>
           <h5><%= teams %></h5>
-        </div>
-        <table class="players-table">
+        </header>
+        <table class="roster-positions-table">
           <thead>
             <tr>
               <th>Fantasy Player</th>
@@ -29,7 +24,6 @@
             <% end %>
           </tbody>
         </table>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </section>
-</div>

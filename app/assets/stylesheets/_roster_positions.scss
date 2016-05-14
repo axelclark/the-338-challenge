@@ -1,0 +1,19 @@
+.roster-positions-collection {
+  @include outer-container;
+}
+.fantasy-team-roster-positions {
+  @include span-columns(5.5);
+}
+.roster-positions-table {
+  
+  td,
+  th {
+    padding: 1px;
+  }
+  th {
+    text-align: center;
+  }
+  td {
+    text-align: left;
+  }
+}
