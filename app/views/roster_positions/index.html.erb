@@ -1,29 +1,29 @@
-  <div class="page-header">
-    <h1>Rosters</h1>
-    <%= render "fantasy_league_select_form" %>
-  </div>
-  <section class="roster-positions-collection">
-    <% @roster_positions.each do |teams, players| %>
-      <div class="fantasy-team-roster-positions">
-        <header>
-          <h5><%= teams %></h5>
-        </header>
-        <table class="roster-positions-table">
-          <thead>
+<div class="page-header">
+  <h1>Rosters</h1>
+  <%= render "fantasy_league_select_form" %>
+</div>
+<section class="roster-positions-collection">
+  <% @roster_positions.each do |teams, players| %>
+    <div class="fantasy-team-roster-positions">
+      <header>
+        <h5><%= teams %></h5>
+      </header>
+      <table class="roster-positions-table">
+        <thead>
+          <tr>
+            <th>Fantasy Player</th>
+            <th>Sports League</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% players.each do |player| %>
             <tr>
-              <th>Fantasy Player</th>
-              <th>Sports League</th>
+              <td><%= player.fantasy_player_name %></td>
+              <td><%= player.sports_league_name %></td>
             </tr>
-          </thead>
-          <tbody>
-            <% players.each do |player| %>
-              <tr>
-                <td><%= player.fantasy_player_name %></td>
-                <td><%= player.sports_league_name %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% end %>
-  </section>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</section>
