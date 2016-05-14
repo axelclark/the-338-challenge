@@ -6,8 +6,10 @@ describe SportsLeague do
     it { should have_many(:fantasy_players) }
 
     # Validations
-    it { should validate_presence_of(:name) }
     it { should validate_presence_of(:championship_date) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:trade_deadline) }
+    it { should validate_presence_of(:waiver_deadline) }
 
     it "is valid with a name and required dates" do
 
