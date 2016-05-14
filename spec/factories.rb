@@ -22,6 +22,7 @@ FactoryGirl.define do
   
   factory :fantasy_team do
     name
+    fantasy_league
   end
   
   factory :final_ranking do
