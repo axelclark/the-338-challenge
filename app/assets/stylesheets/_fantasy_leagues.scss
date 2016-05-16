@@ -1,5 +1,18 @@
 // fantasy_leagues/index
 
-.spacer {
-  height: 80px;
+.teams-collection {
+  display: flex;
+  justify-content: center;
+}
+.teams-container {
+  max-width: 700px;
+  padding: 20px;
+  margin-bottom: 80px;
+}
+.teams-table {
+  
+  td,
+  th {
+    padding: 5px;
+  }
 }
