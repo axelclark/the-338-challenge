@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :fantasy_teams, only: :show
   resources :fantasy_leagues, only: :show 
   resources :sports_leagues, only: [:index, :show]
+  resources :fantasy_players, only: :index
 
   # Also has high voltage routes.
 
