@@ -6,6 +6,22 @@ describe FantasyTeam do
   it { should belong_to(:fantasy_league) }
   it { should belong_to(:franchise) }
   
+  describe ".with_first_and_second_ranked_players" do
+    it "returns fantasy players ranked first or second" do
+      fantasy_team = create(:fantasy_team, name: "Brown")
+      fantasy_player = create(:fantasy_player, name: "PlayerA")
+      create(:final_ranking, :finished_first, fantasy_player: fantasy_player)
+      create(:roster_position,
+             fantasy_player: fantasy_player, fantasy_team: fantasy_team)
+      unowned_player = create(:fantasy_player, name: "PlayerB")
+      create(:final_ranking, rank: 2, fantasy_player: unowned_player)
+
+      result = FantasyTeam.with_first_and_second_ranked_players
+
+      expect(result.map(&:fantasy_player_name)).to eq(%w(PlayerA PlayerB))
+    end
+  end
+  
   describe "self.with_points_and_winnings" do
     it "returns fantasy teams sorted by their points" do
       fantasy_team = create(:fantasy_team, name: "A")

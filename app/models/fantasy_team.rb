@@ -19,6 +19,26 @@ class FantasyTeam < ActiveRecord::Base
     order("points DESC NULLS LAST")
   end
   
+  def self.with_first_and_second_ranked_players
+    joins("
+      LEFT OUTER JOIN roster_positions 
+        ON roster_positions.fantasy_team_id = fantasy_teams.id
+      RIGHT OUTER JOIN fantasy_players
+        ON fantasy_players.id = roster_positions.fantasy_player_id
+      INNER JOIN final_rankings 
+        ON final_rankings.fantasy_player_id = fantasy_players.id
+      INNER JOIN sports_leagues 
+        ON sports_leagues.id = fantasy_players.sports_league_id").
+    select("
+      fantasy_teams.id, fantasy_teams.name AS fantasy_team_name, 
+      fantasy_players.id, fantasy_players.name AS fantasy_player_name, 
+      sports_leagues.id, sports_leagues.name AS sports_league_name, 
+      sports_leagues.championship_date,
+      final_rankings.id, final_rankings.rank, final_rankings.winnings").
+    order("sports_leagues.name, final_rankings.rank").
+    where("final_rankings.rank = 1 OR final_rankings.rank = 2")
+  end
+  
   def points
     fantasy_players.joins(:final_rankings).sum(:points)
   end

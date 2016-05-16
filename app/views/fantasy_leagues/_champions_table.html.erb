@@ -1,0 +1,25 @@
+<div class="champions-container">
+  <table class="champions-table">
+    <thead>
+      <tr>
+        <th>Sports League</th>
+        <th>Champion</th>
+        <th>Owner</th>
+        <th>Runner Up</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @fantasy_league.fantasy_teams.with_first_and_second_ranked_players.
+        group_by(&:sports_league_name).each do |league, players| %>
+        <tr>
+          <td><%= league %></td>
+          <% players.each do |player| %>
+            <td><%= player.fantasy_player_name %></td>
+            <td><%= player.fantasy_team_name %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

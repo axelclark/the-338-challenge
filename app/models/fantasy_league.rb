@@ -7,6 +7,9 @@ class FantasyLeague < ActiveRecord::Base
   validates :year, presence: true
   validates :division, presence: true 
   
+  def self.only_league(league)
+    where("fantasy_leagues.id = ?", league)
+  end
   
   def self.right_joins_fantasy_players(league)
     joins("
@@ -31,9 +34,5 @@ class FantasyLeague < ActiveRecord::Base
 
   def name
     [year, "Division", division].join(" ")
-  end
-  
-  def self.only_league(league)
-    where("fantasy_leagues.id = ?", league)
   end
 end

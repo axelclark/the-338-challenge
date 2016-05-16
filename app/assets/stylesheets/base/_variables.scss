@@ -3,7 +3,7 @@ $medium-screen: 600px;
 $large-screen: 900px;
 
 // Typography
-$base-font-family: $font-stack-system; // Bourbon
+$base-font-family: $helvetica; // Bourbon
 $heading-font-family: $base-font-family;
 
 // Font Sizes
@@ -48,7 +48,7 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 $base-duration: 150ms;
 $base-timing: ease;
 
-$max-width: em(1088);
+$max-width: 1100px;
 $max-width-narrow: 900px;
 $max-width-narrower: 760px;
 $navigation-height: 60px;

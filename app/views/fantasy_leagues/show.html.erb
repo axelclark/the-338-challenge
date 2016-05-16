@@ -1,8 +1,13 @@
 <div class="container">
   <section class="fantasy-league-info">
-  <h1><%= @fantasy_league.name %><h2>
+    <h1><%= @fantasy_league.name %><h1>
+    <h3>Standings</h3>
   </section>
   <section class="teams-collection">
     <%= render "fantasy_teams_table" %>
+  </section>
+    <h3>Championship Winners</h3>
+  <section class="champions-collection">
+    <%= render "champions_table" %>
   </section>
 </div>
