@@ -1,4 +1,6 @@
 class FantasyPlayer < ActiveRecord::Base
+  has_many :active_players, dependent: :destroy
+  has_many :fantasy_leagues, through: :active_players
   has_many :fantasy_teams, through: :roster_positions
   has_many :final_rankings, dependent: :destroy
   has_many :roster_positions, dependent: :destroy

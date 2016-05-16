@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510002916) do
+ActiveRecord::Schema.define(version: 20160511004209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_players", force: :cascade do |t|
+    t.integer  "fantasy_player_id"
+    t.integer  "fantasy_league_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "active_players", ["fantasy_league_id"], name: "index_active_players_on_fantasy_league_id", using: :btree
+  add_index "active_players", ["fantasy_player_id"], name: "index_active_players_on_fantasy_player_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -111,6 +121,8 @@ ActiveRecord::Schema.define(version: 20160510002916) do
   add_index "users", ["franchise_id"], name: "index_users_on_franchise_id", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
+  add_foreign_key "active_players", "fantasy_leagues"
+  add_foreign_key "active_players", "fantasy_players"
   add_foreign_key "fantasy_players", "sports_leagues"
   add_foreign_key "fantasy_teams", "fantasy_leagues"
   add_foreign_key "fantasy_teams", "franchises"

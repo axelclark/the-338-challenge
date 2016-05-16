@@ -103,6 +103,23 @@ feature "admin visits admin dashboard" do
       text: "Franchise was successfully updated.")
   end
   
+  scenario "and adds fantasy player to fantasy league" do
+    create_admin
+    create(:fantasy_player, name: "Seattle Seahawks")
+    create(:fantasy_league, year: 2016, division: "A")
+
+    sign_in_with("admin@example.com", "password")
+    visit admin_active_players_path
+    click_on "New active player"
+    select "Seattle Seahawks", from: "Fantasy player"
+    select "2016 Division A", from: "Fantasy league"
+    click_on "Create Active player"
+
+    expect(page).to have_css(".flash",
+      text: "ActivePlayer was successfully created.")
+  end
+
+  
   def create_admin
     admin = create(:admin, email: "admin@example.com", password: "password")
   end

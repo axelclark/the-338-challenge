@@ -1,13 +1,15 @@
 FactoryGirl.define do
-  factory :franchise do
-    name "MyString"
-  end
   sequence :email do |n|
     "user#{n}@example.com"
   end
 
   sequence :name do |n|
     "name #{n}"
+  end
+  
+  factory :active_player do
+    fantasy_player
+    fantasy_league
   end
 
   factory :fantasy_league do
@@ -36,6 +38,10 @@ FactoryGirl.define do
     end
   end
   
+  factory :franchise do
+    name
+  end
+  
   factory :roster_position do
     fantasy_player
     fantasy_team
@@ -51,6 +57,7 @@ FactoryGirl.define do
   factory :user do
     email
     password "password"
+    admin false
 
     factory :admin do
       admin true

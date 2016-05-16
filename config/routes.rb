@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   resources :fantasy_leagues, only: :show 
   resources :sports_leagues, only: [:index, :show]
   resources :roster_positions, only: :index
+  resources :fantasy_players, only: :index
 
   # Also has high voltage routes.
 
   # Adminstrate routes
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     namespace :admin do
+      resources :active_players
       resources :fantasy_players
       resources :final_rankings
       resources :fantasy_teams
