@@ -1,4 +1,15 @@
 FactoryGirl.define do
+  factory :transaction_line_item do
+    roster_transaction nil
+    fantasy_team nil
+    fantasy_player nil
+    action 1
+  end
+  factory :roster_transaction do
+    type 1
+    additional_terms "MyText"
+    transaction_date "2016-05-17"
+  end
   sequence :email do |n|
     "user#{n}@example.com"
   end

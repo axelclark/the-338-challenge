@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518003037) do
+ActiveRecord::Schema.define(version: 20160518013456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,14 @@ ActiveRecord::Schema.define(version: 20160518003037) do
   add_index "roster_positions", ["fantasy_player_id"], name: "index_roster_positions_on_fantasy_player_id", using: :btree
   add_index "roster_positions", ["fantasy_team_id"], name: "index_roster_positions_on_fantasy_team_id", using: :btree
 
+  create_table "roster_transactions", force: :cascade do |t|
+    t.integer  "type"
+    t.text     "additional_terms"
+    t.date     "transaction_date"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "sports_leagues", force: :cascade do |t|
     t.string   "name"
     t.date     "waiver_deadline"
@@ -106,6 +114,19 @@ ActiveRecord::Schema.define(version: 20160518003037) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
+  create_table "transaction_line_items", force: :cascade do |t|
+    t.integer  "roster_transaction_id"
+    t.integer  "fantasy_team_id"
+    t.integer  "fantasy_player_id"
+    t.integer  "action"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "transaction_line_items", ["fantasy_player_id"], name: "index_transaction_line_items_on_fantasy_player_id", using: :btree
+  add_index "transaction_line_items", ["fantasy_team_id"], name: "index_transaction_line_items_on_fantasy_team_id", using: :btree
+  add_index "transaction_line_items", ["roster_transaction_id"], name: "index_transaction_line_items_on_roster_transaction_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                     null: false
@@ -130,5 +151,8 @@ ActiveRecord::Schema.define(version: 20160518003037) do
   add_foreign_key "final_rankings", "fantasy_players"
   add_foreign_key "roster_positions", "fantasy_players"
   add_foreign_key "roster_positions", "fantasy_teams"
+  add_foreign_key "transaction_line_items", "fantasy_players"
+  add_foreign_key "transaction_line_items", "fantasy_teams"
+  add_foreign_key "transaction_line_items", "roster_transactions"
   add_foreign_key "users", "franchises"
 end

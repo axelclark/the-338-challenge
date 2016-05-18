@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
   root to: "fantasy_leagues#index"
-  resources :fantasy_teams, only: :show
   resources :fantasy_leagues, only: :show 
-  resources :sports_leagues, only: [:index, :show]
-  resources :roster_positions, only: :index
   resources :fantasy_players, only: :index
+  resources :fantasy_teams, only: :show
+  resources :roster_positions, only: :index
+  resources :roster_transactions, only: :index
+  resources :sports_leagues, only: [:index, :show]
 
   # Also has high voltage routes.
 
