@@ -19,6 +19,7 @@ CSV.foreach("db/csv/fantasy_teams.csv") do |row|
     :name => row[0],
     :fantasy_league => fantasy_league,
     :franchise => franchise,
+    :waiver_position => row[3],
   }) 
 end
 

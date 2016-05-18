@@ -12,7 +12,7 @@ class FantasyTeam < ActiveRecord::Base
         ON fantasy_players.id = roster_positions.fantasy_player_id
       LEFT OUTER JOIN final_rankings 
         ON final_rankings.fantasy_player_id = fantasy_players.id").
-    select("fantasy_teams.id, fantasy_teams.name,
+    select("fantasy_teams.id, fantasy_teams.name, fantasy_teams.waiver_position,
       SUM(final_rankings.points) as points,
       SUM(final_rankings.winnings) as winnings").
     group("fantasy_teams.id, fantasy_teams.name").

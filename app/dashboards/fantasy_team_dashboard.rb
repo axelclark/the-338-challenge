@@ -14,6 +14,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
     franchise: Field::BelongsTo,
     id: Field::Number,
     name: Field::String,
+    waiver_position: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -34,6 +35,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :name,
+    :waiver_position,
     :franchise,
     :fantasy_league,
     :fantasy_players,
@@ -46,6 +48,7 @@ class FantasyTeamDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :name,
+    :waiver_position,
     :franchise,
     :fantasy_league,
   ].freeze
