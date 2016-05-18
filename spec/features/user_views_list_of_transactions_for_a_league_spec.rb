@@ -6,7 +6,7 @@ feature "user visits transactions index" do
     fantasy_team = create(:fantasy_team, fantasy_league: fantasy_league) 
     add_fantasy_player = create(:fantasy_player) 
     drop_fantasy_player = create(:fantasy_player) 
-    transaction = create(:roster_transaction, type: "waiver") 
+    transaction = create(:roster_transaction, roster_transaction_type: "waiver") 
     create(:transaction_line_item, fantasy_team: fantasy_team, 
       fantasy_player: drop_fantasy_player, action: "drop",
       roster_transaction: transaction)
