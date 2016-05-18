@@ -7,6 +7,8 @@ describe FantasyPlayer do
   it { should have_many(:fantasy_teams).through(:roster_positions) }
   it { should have_many(:final_rankings).dependent(:destroy) }
   it { should have_many(:roster_positions).dependent(:destroy) }
+  it { should have_many(:roster_transactions).through(:transaction_line_items) }
+  it { should have_many(:transaction_line_items) }
   it { should belong_to(:sports_league) }
   
   # Validations

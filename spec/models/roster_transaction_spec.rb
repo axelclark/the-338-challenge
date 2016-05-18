@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe RosterTransaction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe RosterTransaction do
+  it { should have_many(:transaction_line_items).dependent(:destroy) }
+  it { should have_many(:fantasy_players).through(:transaction_line_items) }
+  it { should have_many(:fantasy_teams).through(:transaction_line_items) }
+  it { should define_enum_for(:type) }
 end

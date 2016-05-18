@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 describe FantasyTeam do
-  it { should have_many(:roster_positions).dependent(:destroy) }
   it { should have_many(:fantasy_players).through(:roster_positions) }
+  it { should have_many(:roster_positions).dependent(:destroy) }
+  it { should have_many(:roster_transactions).through(:transaction_line_items) }
+  it { should have_many(:transaction_line_items) }
   it { should belong_to(:fantasy_league) }
   it { should belong_to(:franchise) }
   

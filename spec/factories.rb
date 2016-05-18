@@ -1,15 +1,4 @@
 FactoryGirl.define do
-  factory :transaction_line_item do
-    roster_transaction nil
-    fantasy_team nil
-    fantasy_player nil
-    action 1
-  end
-  factory :roster_transaction do
-    type 1
-    additional_terms "MyText"
-    transaction_date "2016-05-17"
-  end
   sequence :email do |n|
     "user#{n}@example.com"
   end
@@ -57,12 +46,25 @@ FactoryGirl.define do
     fantasy_player
     fantasy_team
   end
+ 
+  factory :roster_transaction do
+    type 3
+    additional_terms "MyText"
+    roster_transaction_on "2016-05-17"
+  end
   
   factory :sports_league do
     name
     waiver_deadline "2016-11-11"
     trade_deadline "2016-11-20"
     championship_date "2017-02-01"
+  end
+  
+  factory :transaction_line_item do
+    roster_transaction
+    fantasy_team
+    fantasy_player
+    action 1
   end
   
   factory :user do

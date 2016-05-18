@@ -1,6 +1,9 @@
 class FantasyTeam < ActiveRecord::Base
   has_many :fantasy_players, through: :roster_positions
   has_many :roster_positions, dependent: :destroy
+  has_many :roster_transactions, through: :transaction_line_items
+  has_many :transaction_line_items
+
   belongs_to :fantasy_league
   belongs_to :franchise
 
