@@ -6,6 +6,7 @@ class FantasyPlayer < ActiveRecord::Base
   has_many :roster_positions, dependent: :destroy
   has_many :roster_transactions, through: :transaction_line_items
   has_many :transaction_line_items
+  has_many :transaction_line_item_details
   belongs_to :sports_league
   
   validates :name, presence: true
