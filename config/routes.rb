@@ -20,7 +20,9 @@ Rails.application.routes.draw do
       resources :fantasy_leagues
       resources :franchises
       resources :roster_positions
+      resources :roster_transactions
       resources :sports_leagues
+      resources :transaction_line_items
       resources :users
       root to: "fantasy_players#index"
     end
