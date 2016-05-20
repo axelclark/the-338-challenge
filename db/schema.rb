@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519015819) do
+ActiveRecord::Schema.define(version: 20160519215756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20160519015819) do
   create_table "roster_transactions", force: :cascade do |t|
     t.integer  "roster_transaction_type"
     t.text     "additional_terms"
-    t.date     "roster_transaction_on"
+    t.datetime "roster_transaction_on"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

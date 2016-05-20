@@ -7,5 +7,5 @@ class TransactionLineItem < ActiveRecord::Base
   validates :fantasy_player, presence: true
   validates :fantasy_team, presence: true
   
-  enum action: { add: 1, drop: 2 } 
+  enum action: { adds: 1, drops: 2 } 
 end

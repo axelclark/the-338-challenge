@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe TransactionLineItemDetail, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe TransactionLineItemDetail do
+  it { should belong_to(:fantasy_team) }
+  it { should belong_to(:fantasy_player) }
+  it { should belong_to(:roster_transaction) }
+  
+  it { should define_enum_for(:action) }
 end

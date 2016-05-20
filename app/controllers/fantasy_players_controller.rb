@@ -1,13 +1,13 @@
 class FantasyPlayersController < ApplicationController
   def index
     @fantasy_players = FantasyLeague.
-      right_joins_fantasy_players(params_fantasy_league).
+      right_joins_fantasy_players(fantasy_league_param).
       group_by(&:sports_league_name)
   end
 
   private
   
-    def params_fantasy_league
-      params_fantasy_league = params[:fantasy_league_id] || 1
+    def fantasy_league_param
+      params[:fantasy_league_id] || FantasyLeague::DEFAULT_LEAGUE_ID
     end
 end
