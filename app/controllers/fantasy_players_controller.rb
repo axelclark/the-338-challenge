@@ -6,8 +6,8 @@ class FantasyPlayersController < ApplicationController
   end
 
   private
-  
-    def fantasy_league_param
-      params[:fantasy_league_id] || FantasyLeague::DEFAULT_LEAGUE_ID
-    end
+
+  def fantasy_league_param
+    params[:fantasy_league_id] || FantasyLeague::DEFAULT_LEAGUE_ID
+  end
 end
