@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe RosterTransaction do
   it { should have_many(:transaction_line_items).dependent(:destroy) }
