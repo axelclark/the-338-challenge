@@ -1,7 +1,4 @@
 FactoryGirl.define do
-  factory :transaction_line_item_detail do
-
-  end
   sequence :email do |n|
     "user#{n}@example.com"
   end
