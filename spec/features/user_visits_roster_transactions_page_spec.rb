@@ -10,16 +10,16 @@ feature "user visits roster transactions page" do
     transaction = create(:roster_transaction,
                          roster_transaction_type: "waiver claim")
     create(:transaction_line_item, fantasy_team: fantasy_team,
-      fantasy_player: drop_fantasy_player, action: "drops",
-      roster_transaction: transaction)
+           fantasy_player: drop_fantasy_player, action: "drops",
+           roster_transaction: transaction)
     create(:transaction_line_item, fantasy_team: fantasy_team,
-      fantasy_player: add_fantasy_player, action: "adds",
-      roster_transaction: transaction)
+           fantasy_player: add_fantasy_player, action: "adds",
+           roster_transaction: transaction)
 
     visit roster_transactions_path
 
     expect(page).to have_content fantasy_team.name
-    expect(page).to have_content add_fantasy_player.name 
-    expect(page).to have_content drop_fantasy_player.name 
+    expect(page).to have_content add_fantasy_player.name
+    expect(page).to have_content drop_fantasy_player.name
   end
 end
