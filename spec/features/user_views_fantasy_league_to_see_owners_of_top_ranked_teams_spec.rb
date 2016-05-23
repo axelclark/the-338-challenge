@@ -9,9 +9,9 @@ feature "user views fantasy league to see owners of top ranked teams" do
     create(:final_ranking, :finished_first, fantasy_player: fantasy_player)
     create(:final_ranking, rank: 2, fantasy_player: unowned_fantasy_player)
     fantasy_team = create(:fantasy_team, name: "Brown",
-                            fantasy_league: fantasy_league)
+                                         fantasy_league: fantasy_league)
     create(:roster_position, fantasy_team: fantasy_team,
-           fantasy_player: fantasy_player)
+                             fantasy_player: fantasy_player)
 
     visit fantasy_league_path(fantasy_league)
 
