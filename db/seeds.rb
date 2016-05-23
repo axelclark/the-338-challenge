@@ -1,29 +1,29 @@
 require 'csv'
 CSV.foreach("db/csv/fantasy_leagues.csv") do |row|
-  FantasyLeague.create!({ 
+  FantasyLeague.create!({
     :year => row[0],
     :division => row[1],
-  }) 
+  })
 end
 
 CSV.foreach("db/csv/franchises.csv") do |row|
-  Franchise.create!({ 
+  Franchise.create!({
     :name => row[0],
-  }) 
+  })
 end
 
 CSV.foreach("db/csv/fantasy_teams.csv") do |row|
   fantasy_league = FantasyLeague.find(row[1])
   franchise = Franchise.find(row[2])
-  FantasyTeam.create!({ 
+  FantasyTeam.create!({
     :name => row[0],
     :fantasy_league => fantasy_league,
     :franchise => franchise,
     :waiver_position => row[3],
-  }) 
+  })
 end
 
-CSV.foreach("db/csv/sports_leagues.csv", { encoding: "UTF-8", 
+CSV.foreach("db/csv/sports_leagues.csv", { encoding: "UTF-8",
   headers: true, header_converters: :symbol, converters: :all}) do |row|
   SportsLeague.create(row.to_hash)
 end
@@ -62,6 +62,25 @@ CSV.foreach("db/csv/active_players.csv") do |row|
   ActivePlayer.create!({
     :fantasy_league => fantasy_league,
     :fantasy_player => fantasy_player,
+  })
+end
+
+CSV.foreach("db/csv/roster_transactions.csv") do |row|
+  RosterTransaction.create!({
+    :roster_transaction_type => 3,
+    :roster_transaction_on => row[0],
+  })
+end
+
+CSV.foreach("db/csv/transaction_line_items.csv") do |row|
+  fantasy_team = FantasyTeam.find(row[0])
+  fantasy_player = FantasyPlayer.find(row[1])
+  roster_transaction = RosterTransaction.find(row[3])
+  TransactionLineItem.create!({
+    :fantasy_team => fantasy_team,
+    :fantasy_player => fantasy_player,
+    :roster_transaction => roster_transaction,
+    :action => row[2],
   })
 end
 
