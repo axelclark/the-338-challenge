@@ -8,4 +8,3 @@ feature "user views home page" do
     expect(page).to have_content "About"
   end
 end
-
