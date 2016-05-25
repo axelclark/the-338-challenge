@@ -6,11 +6,18 @@ class RosterPosition < ActiveRecord::Base
   validates :fantasy_team, presence: true
 
   def self.with_teams_and_players
-    joins(fantasy_player: :sports_league, fantasy_team: :fantasy_league).
-    select("fantasy_leagues.id, fantasy_teams.id, 
-           fantasy_teams.name AS fantasy_team_name, fantasy_players.id,
-           fantasy_players.name AS fantasy_player_name, sports_leagues.id,
-           sports_leagues.name AS sports_league_name, 
-           sports_leagues.championship_date")
+    joins_fantasy_players.joins_fantasy_teams
+  end
+
+  def self.joins_fantasy_players
+    joins(fantasy_player: :sports_league).
+    merge(FantasyPlayer.select_fantasy_player_columns).
+    merge(SportsLeague.select_sports_league_columns)
+  end
+
+  def self.joins_fantasy_teams
+    joins(fantasy_team: :fantasy_league).
+    merge(FantasyTeam.select_fantasy_team_columns).
+    merge(FantasyLeague.select_fantasy_league_columns)
   end
 end

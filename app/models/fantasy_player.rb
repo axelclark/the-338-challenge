@@ -8,11 +8,15 @@ class FantasyPlayer < ActiveRecord::Base
   has_many :transaction_line_items
   has_many :transaction_line_item_details
   belongs_to :sports_league
-  
+
   validates :name, presence: true
 
   def self.by_name
     order(:name)
+  end
+
+  def self.select_fantasy_player_columns
+    select("fantasy_players.id, fantasy_players.name AS fantasy_player_name")
   end
 
   def with_rank
@@ -22,7 +26,7 @@ class FantasyPlayer < ActiveRecord::Base
       '-'
     end
   end
-  
+
   def with_points
     unless final_rankings.empty?
       final_rankings.last.points
@@ -30,7 +34,7 @@ class FantasyPlayer < ActiveRecord::Base
       '-'
     end
   end
-  
+
   def with_winnings
     unless final_rankings.empty?
       final_rankings.last.winnings
@@ -38,7 +42,7 @@ class FantasyPlayer < ActiveRecord::Base
       '-'
     end
   end
-  
+
   def with_owner
     unless fantasy_teams.empty?
       fantasy_teams.last.name

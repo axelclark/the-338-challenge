@@ -4,7 +4,7 @@ describe RosterPosition do
   # Associations
   it { should belong_to(:fantasy_team) }
   it { should belong_to(:fantasy_player) }
-  
+
   # Validations
   it { should validate_presence_of(:fantasy_team) }
   it { should validate_presence_of(:fantasy_player) }
@@ -15,7 +15,7 @@ describe RosterPosition do
       fantasy_player = create(
         :fantasy_player, name: "B", sports_league: sports_league)
       fantasy_team = create(:fantasy_team, name: "C")
-      create(:roster_position, fantasy_player: fantasy_player, 
+      create(:roster_position, fantasy_player: fantasy_player,
         fantasy_team: fantasy_team)
 
       result = RosterPosition.with_teams_and_players
