@@ -18,7 +18,7 @@ class FantasyLeague < ActiveRecord::Base
         ON fantasy_teams.fantasy_league_id = fantasy_leagues.id
         AND " + ActiveRecord::Base.send(:sanitize_sql_array,
                                         ["fantasy_teams.fantasy_league_id = ?",
-                                        league]) + "
+                                         league]) + "
       INNER JOIN roster_positions
         ON roster_positions.fantasy_team_id = fantasy_teams.id
       RIGHT OUTER JOIN fantasy_players
