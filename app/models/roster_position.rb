@@ -11,13 +11,13 @@ class RosterPosition < ActiveRecord::Base
 
   def self.joins_fantasy_players
     joins(fantasy_player: :sports_league).
-    merge(FantasyPlayer.select_fantasy_player_columns).
-    merge(SportsLeague.select_sports_league_columns)
+      merge(FantasyPlayer.select_fantasy_player_columns).
+      merge(SportsLeague.select_sports_league_columns)
   end
 
   def self.joins_fantasy_teams
     joins(fantasy_team: :fantasy_league).
-    merge(FantasyTeam.select_fantasy_team_columns).
-    merge(FantasyLeague.select_fantasy_league_columns)
+      merge(FantasyTeam.select_fantasy_team_columns).
+      merge(FantasyLeague.select_fantasy_league_columns)
   end
 end

@@ -21,11 +21,11 @@ class FantasyTeam < ActiveRecord::Base
         ON fantasy_players.id = roster_positions.fantasy_player_id
       LEFT OUTER JOIN final_rankings
         ON final_rankings.fantasy_player_id = fantasy_players.id").
-    select("fantasy_teams.id, fantasy_teams.name, fantasy_teams.waiver_position,
-           SUM(final_rankings.points) as points,
-           SUM(final_rankings.winnings) as winnings").
-    group("fantasy_teams.id, fantasy_teams.name").
-    order("points DESC NULLS LAST")
+      select("fantasy_teams.id, fantasy_teams.name, fantasy_teams.waiver_position,
+             SUM(final_rankings.points) as points,
+             SUM(final_rankings.winnings) as winnings").
+      group("fantasy_teams.id, fantasy_teams.name").
+      order("points DESC NULLS LAST")
   end
 
   def self.with_first_and_second_ranked_players
@@ -38,12 +38,12 @@ class FantasyTeam < ActiveRecord::Base
         ON final_rankings.fantasy_player_id = fantasy_players.id
       INNER JOIN sports_leagues
         ON sports_leagues.id = fantasy_players.sports_league_id").
-    select_fantasy_team_columns.
-    merge(FantasyPlayer.select_fantasy_player_columns).
-    merge(FinalRanking.select_final_ranking_columns).
-    merge(SportsLeague.select_sports_league_columns).
-    order("sports_leagues.name, final_rankings.rank").
-    where("final_rankings.rank = 1 OR final_rankings.rank = 2")
+      select_fantasy_team_columns.
+      merge(FantasyPlayer.select_fantasy_player_columns).
+      merge(FinalRanking.select_final_ranking_columns).
+      merge(SportsLeague.select_sports_league_columns).
+      order("sports_leagues.name, final_rankings.rank").
+      where("final_rankings.rank = 1 OR final_rankings.rank = 2")
   end
 
   def points
