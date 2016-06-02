@@ -2,15 +2,13 @@ require 'rails_helper'
 
 describe FantasyPlayer do
   # Associations
-  it { should have_many(:active_players).dependent(:destroy) }
-  it { should have_many(:fantasy_leagues).through(:active_players) }
   it { should have_many(:fantasy_teams).through(:roster_positions) }
   it { should have_many(:final_rankings).dependent(:destroy) }
   it { should have_many(:roster_positions).dependent(:destroy) }
   it { should have_many(:roster_transactions).through(:transaction_line_items) }
   it { should have_many(:transaction_line_items) }
   it { should belong_to(:sports_league) }
-  
+
   # Validations
   it { should validate_presence_of(:name) }
 
@@ -30,7 +28,7 @@ describe FantasyPlayer do
     context "with an associated final ranking" do
       it "returns the rank" do
         fantasy_player = create(:fantasy_player)
-        create(:final_ranking, :finished_first, 
+        create(:final_ranking, :finished_first,
                fantasy_player: fantasy_player)
 
         result = fantasy_player.with_rank
@@ -49,12 +47,12 @@ describe FantasyPlayer do
       end
     end
   end
-  
+
   describe "#with_points" do
     context "with an associated final ranking" do
       it "returns the points" do
         fantasy_player = create(:fantasy_player)
-        create(:final_ranking, :finished_first, 
+        create(:final_ranking, :finished_first,
                fantasy_player: fantasy_player)
 
 
@@ -79,7 +77,7 @@ describe FantasyPlayer do
     context "with an associated final ranking" do
       it "returns the winnings" do
         fantasy_player = create(:fantasy_player)
-        create(:final_ranking, :finished_first, 
+        create(:final_ranking, :finished_first,
                fantasy_player: fantasy_player)
 
         result = fantasy_player.with_winnings

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "fantasy_leagues#index"
-  resources :fantasy_leagues, only: :show 
+  resources :fantasy_leagues, only: :show
   resources :fantasy_players, only: :index
   resources :fantasy_teams, only: :show
   resources :roster_positions, only: :index
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   # Adminstrate routes
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     namespace :admin do
-      resources :active_players
       resources :fantasy_players
       resources :final_rankings
       resources :fantasy_teams
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
       root to: "fantasy_players#index"
     end
   end
-  
+
   # Clearance routes
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]

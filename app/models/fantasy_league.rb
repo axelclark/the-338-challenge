@@ -1,8 +1,6 @@
 class FantasyLeague < ActiveRecord::Base
   DEFAULT_LEAGUE_ID = 1
 
-  has_many :active_players, dependent: :destroy
-  has_many :fantasy_players, through: :active_players
   has_many :fantasy_teams
 
   validates :year, presence: true
