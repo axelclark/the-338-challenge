@@ -1,18 +1,40 @@
 <section class="page-header">
-  <h1>Waiver Claims</h1>
+  <h1>Transactions</h1>
   <%= render "fantasy_league_select_form" %>
 </section>
-<section class="waiver-collection">
-  <% @roster_transactions.only_waiver_claims.ordered_by_transaction_date.
-    each do |transaction| %>
-  <h5><%= transaction.roster_transaction_on.to_s(:simple) %></h5>
-  <% transaction.transaction_line_item_details.each do |line_item| %>
-    <p>
-    <%= line_item.fantasy_team_name %>
-    <%= line_item.action %>
-    <%= line_item.fantasy_player_name %>
-    </p>
-  <% end %>
-  <hr>
-<% end %>
+<section class="transactions-collection">
+    <table class="transactions-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Transactions</th>
+          <th>Transaction Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @roster_transactions.ordered_by_transaction_date.
+          each do |transaction| %>
+          <tr>
+            <td>
+              <%= transaction.roster_transaction_on.to_s(:simple) %>
+            </td>
+            <td>
+              <ul>
+                <% transaction.transaction_line_item_details.
+                  each do |line_item| %>
+                  <li>
+                    <%= line_item.fantasy_team_name %>
+                    <%= line_item.action %>
+                    <%= line_item.fantasy_player_name %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+            <td>
+              <%= transaction.roster_transaction_type.humanize %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 </section>
