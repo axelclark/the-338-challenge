@@ -23,13 +23,13 @@ describe FantasyLeague do
     it "returns all fantasy players with their owners in a league" do
       fantasy_league_a = create(:fantasy_league, year: 2016, division: "A")
       fantasy_league_b = create(:fantasy_league, year: 2016, division: "B")
-      fantasy_team = create(:fantasy_team, name: "Brown",
+      fantasy_team_a = create(:fantasy_team, name: "Axel",
                             fantasy_league: fantasy_league_b)
-      fantasy_team = create(:fantasy_team, name: "Axel",
+      fantasy_team_b = create(:fantasy_team, name: "Brown",
                             fantasy_league: fantasy_league_b)
       owned_player = create(:fantasy_player, name: "PlayerA")
       create(:roster_position,
-             fantasy_player: owned_player, fantasy_team: fantasy_team)
+             fantasy_player: owned_player, fantasy_team: fantasy_team_b)
       unowned_player = create(:fantasy_player, name: "PlayerB")
 
       result = FantasyLeague.right_joins_fantasy_players(fantasy_league_b.id)

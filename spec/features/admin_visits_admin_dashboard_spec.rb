@@ -1,7 +1,6 @@
 require "rails_helper"
 
 feature "admin visits admin dashboard" do
-
   scenario "and updates fantasy player name" do
     create_admin
     fantasy_player = create(:fantasy_player)
@@ -86,8 +85,7 @@ feature "admin visits admin dashboard" do
     check "Admin"
     click_on "Update User"
 
-    expect(page).to have_css(".flash",
-      text: "User was successfully updated.")
+    expect(page).to have_css(".flash", text: "User was successfully updated.")
   end
 
   def create_admin
