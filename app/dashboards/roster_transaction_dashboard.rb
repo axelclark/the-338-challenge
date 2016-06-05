@@ -12,7 +12,8 @@ class RosterTransactionDashboard < Administrate::BaseDashboard
     fantasy_teams: Field::HasMany,
     transaction_line_items: Field::HasMany,
     id: Field::Number,
-    roster_transaction_type: Field::String.with_options(searchable: false),
+    roster_transaction_type: Field::Select.with_options(
+      collection: RosterTransaction.roster_transaction_types.keys),
     additional_terms: Field::Text,
     roster_transaction_on: Field::DateTime,
     created_at: Field::DateTime,
@@ -47,9 +48,6 @@ class RosterTransactionDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :fantasy_players,
-    :fantasy_teams,
-    :transaction_line_items,
     :roster_transaction_type,
     :roster_transaction_on,
     :additional_terms,

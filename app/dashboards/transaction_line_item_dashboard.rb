@@ -12,7 +12,8 @@ class TransactionLineItemDashboard < Administrate::BaseDashboard
     fantasy_team: Field::BelongsTo,
     fantasy_player: Field::BelongsTo,
     id: Field::Number,
-    action: Field::String.with_options(searchable: false),
+    action: Field::Select.with_options(
+      collection: TransactionLineItem.actions.keys),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
