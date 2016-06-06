@@ -13,7 +13,7 @@ class RosterTransactionDashboard < Administrate::BaseDashboard
     transaction_line_items: Field::HasMany,
     id: Field::Number,
     roster_transaction_type: Field::Select.with_options(
-      collection: RosterTransaction.roster_transaction_types.keys),
+      collection: RosterTransaction.type_list),
     additional_terms: Field::Text,
     roster_transaction_on: Field::DateTime,
     created_at: Field::DateTime,

@@ -8,4 +8,8 @@ class TransactionLineItem < ActiveRecord::Base
   validates :fantasy_team, presence: true
 
   enum action: { adds: 1, drops: 2 }
+
+  def self.action_list
+    actions.keys.map(&:capitalize)
+  end
 end

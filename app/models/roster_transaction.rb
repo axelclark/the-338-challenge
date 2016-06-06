@@ -8,8 +8,9 @@ class RosterTransaction < ActiveRecord::Base
     "initial draft" => 1, "mid season draft" => 2, "waiver claim" => 3,
     "trade" => 4
   }
-  def self.only_waiver_claims
-    where(roster_transaction_type: 3)
+
+  def self.type_list
+    roster_transaction_types.keys.map(&:capitalize)
   end
 
   def self.ordered_by_transaction_date

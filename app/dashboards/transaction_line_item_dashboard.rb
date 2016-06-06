@@ -13,7 +13,7 @@ class TransactionLineItemDashboard < Administrate::BaseDashboard
     fantasy_player: Field::BelongsTo,
     id: Field::Number,
     action: Field::Select.with_options(
-      collection: TransactionLineItem.actions.keys),
+      collection: TransactionLineItem.action_list),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze

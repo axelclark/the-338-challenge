@@ -7,7 +7,7 @@ describe FantasyTeam do
   it { should have_many(:transaction_line_items) }
   it { should belong_to(:fantasy_league) }
   it { should belong_to(:franchise) }
-  
+
   describe ".with_first_and_second_ranked_players" do
     it "returns fantasy players ranked first or second" do
       fantasy_team = create(:fantasy_team, name: "Brown")
@@ -23,15 +23,15 @@ describe FantasyTeam do
       expect(result.map(&:fantasy_player_name)).to eq(%w(PlayerA PlayerB))
     end
   end
-  
-  describe "self.with_points_and_winnings" do
+
+  describe ".with_points_and_winnings" do
     it "returns fantasy teams sorted by their points" do
       fantasy_team = create(:fantasy_team, name: "A")
       other_fantasy_team = create(:fantasy_team, name: "B")
       fantasy_player = create(:fantasy_player)
-      create(:final_ranking, :finished_first, 
+      create(:final_ranking, :finished_first,
              points: 8, fantasy_player: fantasy_player)
-      create(:roster_position, fantasy_player: fantasy_player, 
+      create(:roster_position, fantasy_player: fantasy_player,
              fantasy_team: fantasy_team)
 
       result = FantasyTeam.with_points_and_winnings.map(&:name)
@@ -46,12 +46,12 @@ describe FantasyTeam do
       create(:final_ranking, :finished_first,
              points: 8, fantasy_player: fantasy_player)
       fantasy_team = create(:fantasy_team)
-      create(:roster_position, fantasy_player: fantasy_player, 
+      create(:roster_position, fantasy_player: fantasy_player,
              fantasy_team: fantasy_team)
 
-      result = fantasy_team.points 
+      result = fantasy_team.points
 
-      expect(result).to eq(8) 
+      expect(result).to eq(8)
     end
   end
 

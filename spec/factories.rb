@@ -49,7 +49,6 @@ FactoryGirl.define do
 
   factory :roster_transaction do
     roster_transaction_type 3
-    additional_terms "MyText"
     roster_transaction_on "2016-05-17"
   end
 
