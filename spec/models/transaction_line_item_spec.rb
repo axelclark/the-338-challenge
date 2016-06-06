@@ -13,11 +13,11 @@ describe TransactionLineItem do
 
   describe ".action_list" do
     it "returns the enum strings for actions" do
-    enum_list = ["Adds", "Drops"]
+      enum_list = %w(adds drops)
 
-    result = TransactionLineItem.action_list
+      result = TransactionLineItem.action_list
 
-    expect(result).to eq(enum_list)
+      expect(result).to eq(enum_list)
     end
   end
 end

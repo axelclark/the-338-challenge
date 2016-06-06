@@ -10,7 +10,7 @@ class RosterTransaction < ActiveRecord::Base
   }
 
   def self.type_list
-    roster_transaction_types.keys.map(&:capitalize)
+    roster_transaction_types.keys
   end
 
   def self.ordered_by_transaction_date

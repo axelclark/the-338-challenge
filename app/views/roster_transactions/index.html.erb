@@ -29,6 +29,10 @@
                     <%= line_item.fantasy_player_name %>
                   </li>
                 <% end %>
+                <li>
+                  <%= transaction.additional_terms unless 
+                    transaction.additional_terms.blank? %>
+                </li>
               </ul>
             </td>
             <td>

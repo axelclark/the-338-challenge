@@ -10,6 +10,6 @@ class TransactionLineItem < ActiveRecord::Base
   enum action: { adds: 1, drops: 2 }
 
   def self.action_list
-    actions.keys.map(&:capitalize)
+    actions.keys
   end
 end
