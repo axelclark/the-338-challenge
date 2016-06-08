@@ -11,4 +11,8 @@ class FinalRanking < ActiveRecord::Base
     select("final_rankings.id, final_rankings.rank, final_rankings.winnings,
            final_rankings.year")
   end
+
+  def self.from_year(year)
+    where(year: year)
+  end
 end

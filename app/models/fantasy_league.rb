@@ -38,4 +38,8 @@ class FantasyLeague < ActiveRecord::Base
   def name
     [year, "Division", division].join(" ")
   end
+
+  def with_teams_and_players
+    fantasy_teams.with_players(self)
+  end
 end

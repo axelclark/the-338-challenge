@@ -8,6 +8,8 @@ class FantasyTeam < ActiveRecord::Base
   belongs_to :fantasy_league
   belongs_to :franchise
 
+  delegate :year, to: :fantasy_league
+
   def self.select_fantasy_team_columns
     select("fantasy_teams.id, fantasy_teams.name AS fantasy_team_name,
            fantasy_teams.waiver_position")
@@ -35,9 +37,9 @@ class FantasyTeam < ActiveRecord::Base
         ON roster_positions.fantasy_team_id = fantasy_teams.id
       RIGHT OUTER JOIN fantasy_players
         ON fantasy_players.id = roster_positions.fantasy_player_id
-      INNER JOIN final_rankings
+      RIGHT JOIN final_rankings
         ON final_rankings.fantasy_player_id = fantasy_players.id
-      INNER JOIN sports_leagues
+      RIGHT JOIN sports_leagues
         ON sports_leagues.id = fantasy_players.sports_league_id").
       select_fantasy_team_columns.
       merge(FantasyPlayer.select_fantasy_player_columns).
@@ -47,7 +49,20 @@ class FantasyTeam < ActiveRecord::Base
       where("final_rankings.rank = 1 OR final_rankings.rank = 2")
   end
 
+  def self.by_league(league)
+    where("fantasy_league_id = ?", league.id)
+  end
+
   def points
-    fantasy_players.joins(:final_rankings).sum(:points)
+    fantasy_players.total_points(self)
+  end
+
+  def winnings
+    fantasy_players.joins(:final_rankings).sum(:winnings)
+  end
+
+  def self.with_players(league)
+    joins(:fantasy_players).merge(FantasyPlayer.with_details(league.year)).
+      by_league(league)
   end
 end

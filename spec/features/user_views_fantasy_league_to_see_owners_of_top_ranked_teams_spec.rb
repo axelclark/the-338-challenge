@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "user views fantasy league to see owners of top ranked teams" do
   scenario "and see all players ranked first or second" do
-    pending
     fantasy_league = create(:fantasy_league)
     fantasy_player = create(:fantasy_player, name: "Seattle Seahawks")
     unowned_fantasy_player = create(:fantasy_player, name: "Oakland Raiders")
