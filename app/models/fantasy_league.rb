@@ -20,14 +20,11 @@ class FantasyLeague < ActiveRecord::Base
       INNER JOIN roster_positions
         ON roster_positions.fantasy_team_id = fantasy_teams.id
       RIGHT OUTER JOIN fantasy_players
-        ON fantasy_players.id = roster_positions.fantasy_player_id
-      INNER JOIN sports_leagues
-        ON sports_leagues.id = fantasy_players.sports_league_id").
+        ON fantasy_players.id = roster_positions.fantasy_player_id").
+      merge(FantasyPlayer.with_details).
       select_fantasy_league_columns.
       merge(FantasyTeam.select_fantasy_team_columns).
       merge(FantasyLeague.select_fantasy_league_columns).
-      merge(FantasyPlayer.select_fantasy_player_columns).
-      merge(SportsLeague.select_sports_league_columns).
       order("sports_leagues.championship_date, fantasy_players.name")
   end
 
