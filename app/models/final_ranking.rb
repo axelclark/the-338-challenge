@@ -9,6 +9,11 @@ class FinalRanking < ActiveRecord::Base
 
   def self.select_final_ranking_columns
     select("final_rankings.id, final_rankings.rank, final_rankings.winnings,
-           final_rankings.year")
+           final_rankings.points, final_rankings.year")
+  end
+
+  def self.select_sum_points_and_winnings
+    select("SUM(final_rankings.points) as points,
+           SUM(final_rankings.winnings) as winnings")
   end
 end

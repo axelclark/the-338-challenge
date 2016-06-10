@@ -10,12 +10,17 @@ describe SportsLeague do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:trade_deadline) }
     it { should validate_presence_of(:waiver_deadline) }
+  end
 
-    it "is valid with a name and required dates" do
-
-      league = build(:sports_league)
-  
-      expect(league).to be_valid
+  describe ".by_fantasy_players" do
+    it "preloads fantays players and orders by player name" do
+      skip
     end
-  end 
+  end
+
+  describe ".select_sports_league_columns" do
+    it "selects all columns and name as sports league name" do
+      skip
+    end
+  end
 end

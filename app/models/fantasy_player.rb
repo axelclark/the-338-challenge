@@ -9,28 +9,36 @@ class FantasyPlayer < ActiveRecord::Base
 
   validates :name, presence: true
 
-  def self.with_details
-    with_final_rankings.with_sports_league.select_fantasy_player_columns
+  def self.with_all_details
+    left_join_all_details.select_all_details
+  end
+
+  def self.left_join_all_details
+    with_final_rankings.with_sports_league
+  end
+
+  def self.select_all_details
+    select_fantasy_player_columns.
+      merge(FinalRanking.select_final_ranking_columns).
+      merge(SportsLeague.select_sports_league_columns)
   end
 
   def self.with_final_rankings
     joins("LEFT OUTER JOIN final_rankings
-      ON final_rankings.fantasy_player_id = fantasy_players.id").
-      merge(FinalRanking.select_final_ranking_columns)
+      ON final_rankings.fantasy_player_id = fantasy_players.id")
   end
 
   def self.with_sports_league
     joins("LEFT OUTER JOIN sports_leagues
-      ON sports_leagues.id = fantasy_players.sports_league_id").
-      merge(SportsLeague.select_sports_league_columns)
-  end
-
-  def self.by_name
-    order(:name)
+      ON sports_leagues.id = fantasy_players.sports_league_id")
   end
 
   def self.select_fantasy_player_columns
     select("fantasy_players.id, fantasy_players.name AS fantasy_player_name")
+  end
+
+  def self.by_name
+    order(:name)
   end
 
   def with_rank

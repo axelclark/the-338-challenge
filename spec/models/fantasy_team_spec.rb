@@ -34,9 +34,33 @@ describe FantasyTeam do
       create(:roster_position, fantasy_player: fantasy_player,
              fantasy_team: fantasy_team)
 
-      result = FantasyTeam.with_points_and_winnings.map(&:name)
+      result = FantasyTeam.with_points_and_winnings.map(&:fantasy_team_name)
 
       expect(result).to eq %w(A B)
+    end
+  end
+
+  describe ".all_fantasy_players_with_details" do
+    it "returns ALL fantasy players with final rankings and sports leagues" do
+      skip
+    end
+  end
+
+  describe ".left_joins_fantasy_players_with_details" do
+    it "returns OWNED fantasy players with final rankings and sports leagues" do
+      skip
+    end
+  end
+
+  describe ".left_joins_roster_positions" do
+    it "returns roster positions and ALL fantasy teams" do
+      skip
+    end
+  end
+
+  describe ".select_fantasy_team_columns" do
+    it "selects all columns and name as fantasy_team_name" do
+      skip
     end
   end
 

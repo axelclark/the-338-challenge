@@ -23,13 +23,16 @@ class RosterPosition < ActiveRecord::Base
 
   def self.right_joins_fantasy_players
     joins("RIGHT OUTER JOIN fantasy_players
-      ON fantasy_players.id = roster_positions.fantasy_player_id").
-      merge(FantasyPlayer.select_fantasy_player_columns)
+      ON fantasy_players.id = roster_positions.fantasy_player_id")
   end
+
+  def self.left_joins_fantasy_players
+    joins("LEFT OUTER JOIN fantasy_players
+      ON fantasy_players.id = roster_positions.fantasy_player_id")
+  end
+
 
   def self.select_roster_position_columns
     select("roster_positions.id")
   end
-
-
 end

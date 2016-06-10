@@ -12,6 +12,36 @@ describe FantasyPlayer do
   # Validations
   it { should validate_presence_of(:name) }
 
+  describe ".with_all_details" do
+    it "returns ALL players with details" do
+      skip
+    end
+  end
+
+  describe ".left_join_all_details" do
+    it "joins final rankins and sports league with ALL players" do
+      skip
+    end
+  end
+
+  describe "with_final_rankings" do
+    it "joins final rankins with ALL players" do
+      skip
+    end
+  end
+
+  describe "with_sports_league" do
+    it "joins sports league with ALL players" do
+      skip
+    end
+  end
+
+  describe "select_fantasy_player_columns" do
+    it "joins sports league with ALL players" do
+      skip
+    end
+  end
+
   describe "self.by_name" do
     it "returns fantasy teams sorted by their names" do
       create(:fantasy_player, name: "A")

@@ -9,16 +9,6 @@ describe FantasyLeague do
     it { should validate_presence_of(:division) }
   end
 
-  describe "#name" do
-    it "returns the name of the fantasy league" do
-      fantasy_league = create(:fantasy_league, year: 2016, division: "A")
-
-      result = fantasy_league.name
-
-      expect(result).to eq ("2016 Division A")
-    end
-  end
-
   describe ".right_joins_fantasy_players" do
     it "returns all fantasy players with their owners in a league" do
       fantasy_league_a = create(:fantasy_league, year: 2016, division: "A")
@@ -40,6 +30,19 @@ describe FantasyLeague do
     end
   end
 
+  describe ".fantasy_team_subquery_by_league(league)" do
+    it "joins only fantasy teams in a league" do
+      pending
+      expect(result.map(&:fantasy_team_name)).to eq(%w(PlayerA))
+    end
+  end
+
+  describe ".select_fantasy_league_columns" do
+    it "selects all attribute columns" do
+      skip
+    end
+  end
+
   describe ".only_league(league)" do
     it "returns only one league by league id" do
       fantasy_league_a = create :fantasy_league, division: "A"
@@ -49,6 +52,16 @@ describe FantasyLeague do
       result = FantasyLeague.only_league(fantasy_league_a_id)
 
       expect(result.map(&:division)).to eq(%w(A))
+    end
+  end
+
+  describe "#name" do
+    it "returns the name of the fantasy league" do
+      fantasy_league = create(:fantasy_league, year: 2016, division: "A")
+
+      result = fantasy_league.name
+
+      expect(result).to eq ("2016 Division A")
     end
   end
 end
