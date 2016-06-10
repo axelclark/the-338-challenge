@@ -11,25 +11,22 @@ class FantasyLeague < ActiveRecord::Base
   end
 
   def self.right_joins_fantasy_players(league)
-    joins("
-      INNER JOIN fantasy_teams
-        ON fantasy_teams.fantasy_league_id = fantasy_leagues.id
-        AND " + ActiveRecord::Base.send(:sanitize_sql_array,
-                                        ["fantasy_teams.fantasy_league_id = ?",
-                                         league]) + "
-      INNER JOIN roster_positions
-        ON roster_positions.fantasy_team_id = fantasy_teams.id
-      RIGHT OUTER JOIN fantasy_players
-        ON fantasy_players.id = roster_positions.fantasy_player_id").
-      merge(FantasyPlayer.with_details).
-      select_fantasy_league_columns.
-      merge(FantasyTeam.select_fantasy_team_columns).
-      merge(FantasyLeague.select_fantasy_league_columns).
+    fantasy_team_subquery_by_league(league).
+      merge(FantasyTeam.all_fantasy_players_with_details).
       order("sports_leagues.championship_date, fantasy_players.name")
   end
 
   def self.select_fantasy_league_columns
     select("fantasy_leagues.id, fantasy_leagues.year, fantasy_leagues.division")
+  end
+
+  def self.fantasy_team_subquery_by_league(league)
+    joins("
+      INNER JOIN fantasy_teams
+        ON fantasy_teams.fantasy_league_id = fantasy_leagues.id
+        AND " + ActiveRecord::Base.send(:sanitize_sql_array,
+        ["fantasy_teams.fantasy_league_id = ?",league]) + "").
+      select_fantasy_league_columns
   end
 
   def name

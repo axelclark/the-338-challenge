@@ -21,7 +21,7 @@ class FantasyPlayer < ActiveRecord::Base
 
   def self.with_sports_league
     joins("LEFT OUTER JOIN sports_leagues
-        ON sports_leagues.id = fantasy_players.sports_league_id").
+      ON sports_leagues.id = fantasy_players.sports_league_id").
       merge(SportsLeague.select_sports_league_columns)
   end
 

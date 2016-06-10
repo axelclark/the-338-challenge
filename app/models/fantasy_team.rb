@@ -8,6 +8,20 @@ class FantasyTeam < ActiveRecord::Base
   belongs_to :fantasy_league
   belongs_to :franchise
 
+  def self.left_joins_roster_positions
+    joins("LEFT OUTER JOIN roster_positions
+      ON roster_positions.fantasy_team_id = fantasy_teams.id").
+    merge(RosterPosition.select_roster_position_columns)
+  end
+
+  def self.all_fantasy_players_with_details
+    left_joins_roster_positions.
+      merge(RosterPosition.right_joins_fantasy_players).
+      merge(FantasyPlayer.with_details).
+      select_fantasy_team_columns
+  end
+
+
   def self.select_fantasy_team_columns
     select("fantasy_teams.id, fantasy_teams.name AS fantasy_team_name,
            fantasy_teams.waiver_position")
