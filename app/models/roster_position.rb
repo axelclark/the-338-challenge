@@ -31,7 +31,6 @@ class RosterPosition < ActiveRecord::Base
       ON fantasy_players.id = roster_positions.fantasy_player_id")
   end
 
-
   def self.select_roster_position_columns
     select("roster_positions.id")
   end

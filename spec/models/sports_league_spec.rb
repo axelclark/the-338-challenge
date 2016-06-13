@@ -12,15 +12,13 @@ describe SportsLeague do
     it { should validate_presence_of(:waiver_deadline) }
   end
 
-  describe ".by_fantasy_players" do
-    it "preloads fantays players and orders by player name" do
-      skip
-    end
-  end
-
   describe ".select_sports_league_columns" do
     it "selects all columns and name as sports league name" do
-      skip
+      create(:sports_league, name: "NFL")
+
+      result = SportsLeague.select_sports_league_columns
+
+      expect(result.map(&:sports_league_name)).to eq %w(NFL)
     end
   end
 end

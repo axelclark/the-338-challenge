@@ -14,12 +14,12 @@ describe FantasyLeague do
       fantasy_league_a = create(:fantasy_league, year: 2016, division: "A")
       fantasy_league_b = create(:fantasy_league, year: 2016, division: "B")
       fantasy_team_a = create(:fantasy_team, name: "Axel",
-                            fantasy_league: fantasy_league_b)
+                                             fantasy_league: fantasy_league_b)
       fantasy_team_b = create(:fantasy_team, name: "Brown",
-                            fantasy_league: fantasy_league_b)
+                                             fantasy_league: fantasy_league_b)
       owned_player = create(:fantasy_player, name: "PlayerA")
-      create(:roster_position,
-             fantasy_player: owned_player, fantasy_team: fantasy_team_b)
+      create(:roster_position, fantasy_player: owned_player,
+                               fantasy_team: fantasy_team_b)
       unowned_player = create(:fantasy_player, name: "PlayerB")
 
       result = FantasyLeague.right_joins_fantasy_players(fantasy_league_b.id)
@@ -32,14 +32,25 @@ describe FantasyLeague do
 
   describe ".fantasy_team_subquery_by_league(league)" do
     it "joins only fantasy teams in a league" do
-      pending
-      expect(result.map(&:fantasy_team_name)).to eq(%w(PlayerA))
+      fantasy_league_a = create(:fantasy_league, year: 2016, division: "A")
+      fantasy_league_b = create(:fantasy_league, year: 2016, division: "B")
+      fantasy_team_a = create(:fantasy_team, fantasy_league: fantasy_league_a)
+      fantasy_team_b = create(:fantasy_team, fantasy_league: fantasy_league_b)
+
+      result = FantasyLeague.
+               fantasy_team_subquery_by_league(fantasy_league_a.id)
+
+      expect(result.map(&:division)).to eq(%w(A))
     end
   end
 
   describe ".select_fantasy_league_columns" do
     it "selects all attribute columns" do
-      skip
+      fantasy_league_a = create(:fantasy_league, year: 2016, division: "A")
+
+      result = FantasyLeague.select_fantasy_league_columns
+
+      expect(result.map(&:division)).to eq(%w(A))
     end
   end
 
@@ -47,7 +58,7 @@ describe FantasyLeague do
     it "returns only one league by league id" do
       fantasy_league_a = create :fantasy_league, division: "A"
       fantasy_league_a_id = fantasy_league_a.id
-      create :fantasy_league, division: "B"
+      create(:fantasy_league, division: "B")
 
       result = FantasyLeague.only_league(fantasy_league_a_id)
 
@@ -61,7 +72,7 @@ describe FantasyLeague do
 
       result = fantasy_league.name
 
-      expect(result).to eq ("2016 Division A")
+      expect(result).to eq "2016 Division A"
     end
   end
 end

@@ -19,7 +19,24 @@ describe FinalRanking do
 
   describe ".select_sum_points_and_winnings" do
     it "sums all points and winnings" do
-      skip
+      create(:final_ranking, points: 8, winnings: 25)
+      create(:final_ranking, points: 5, winnings: 10)
+
+      result = FinalRanking.select_sum_points_and_winnings
+
+      expect(result.map(&:points)).to eq [13]
+      expect(result.map(&:winnings)).to eq [35]
+    end
+  end
+
+  describe ".select_final_ranking_columns" do
+    it "sums all points and winnings" do
+      create(:final_ranking, points: 8, winnings: 25)
+
+      result = FinalRanking.select_sum_points_and_winnings
+
+      expect(result.map(&:points)).to eq [8]
+      expect(result.map(&:winnings)).to eq [25]
     end
   end
 end

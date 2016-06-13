@@ -30,9 +30,9 @@ FactoryGirl.define do
   factory :final_ranking do
     fantasy_player
     year 2016
+    rank 1
 
     trait :finished_first do
-      rank 1
       points 8
       winnings 25
     end

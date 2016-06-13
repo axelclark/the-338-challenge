@@ -14,31 +14,67 @@ describe FantasyPlayer do
 
   describe ".with_all_details" do
     it "returns ALL players with details" do
-      skip
+      sports_league = create(:sports_league, name: "A")
+      fantasy_player = create(:fantasy_player, name: "B",
+                                               sports_league: sports_league)
+      create(:final_ranking, :finished_first, points: 8,
+                                              fantasy_player: fantasy_player)
+
+      result = FantasyPlayer.with_all_details
+
+      expect(result.map(&:sports_league_name)).to eq %w(A)
+      expect(result.map(&:fantasy_player_name)).to eq %w(B)
+      expect(result.map(&:points)).to eq [8]
     end
   end
 
   describe ".left_join_all_details" do
     it "joins final rankins and sports league with ALL players" do
-      skip
+      fantasy_player = create(:fantasy_player, name: "B")
+
+      result = FantasyPlayer.with_all_details
+
+      expect(result.map(&:fantasy_player_name)).to eq %w(B)
     end
   end
 
   describe "with_final_rankings" do
-    it "joins final rankins with ALL players" do
-      skip
+    it "joins final rankings with ALL players" do
+      fantasy_player = create(:fantasy_player, name: "B")
+      create(:final_ranking, :finished_first, points: 8,
+                                              fantasy_player: fantasy_player)
+
+      result = FantasyPlayer.with_final_rankings.
+               merge(FinalRanking.select_final_ranking_columns).
+               select_fantasy_player_columns
+
+      expect(result.map(&:fantasy_player_name)).to eq %w(B)
+      expect(result.map(&:points)).to eq [8]
     end
   end
 
   describe "with_sports_league" do
     it "joins sports league with ALL players" do
-      skip
+      sports_league = create(:sports_league, name: "A")
+      fantasy_player = create(:fantasy_player, name: "B",
+                                               sports_league: sports_league)
+
+      result = FantasyPlayer.with_sports_league.
+               merge(SportsLeague.select_sports_league_columns).
+               select_fantasy_player_columns
+
+      expect(result.map(&:sports_league_name)).to eq %w(A)
+      expect(result.map(&:fantasy_player_name)).to eq %w(B)
     end
   end
 
   describe "select_fantasy_player_columns" do
     it "joins sports league with ALL players" do
-      skip
+      create(:fantasy_player, name: "B")
+
+      result = FantasyPlayer.select_fantasy_player_columns
+
+      expect(result.map(&:fantasy_player_name)).to eq %w(B)
     end
   end
 
@@ -58,8 +94,7 @@ describe FantasyPlayer do
     context "with an associated final ranking" do
       it "returns the rank" do
         fantasy_player = create(:fantasy_player)
-        create(:final_ranking, :finished_first,
-               fantasy_player: fantasy_player)
+        create(:final_ranking, :finished_first, fantasy_player: fantasy_player)
 
         result = fantasy_player.with_rank
 
@@ -82,9 +117,7 @@ describe FantasyPlayer do
     context "with an associated final ranking" do
       it "returns the points" do
         fantasy_player = create(:fantasy_player)
-        create(:final_ranking, :finished_first,
-               fantasy_player: fantasy_player)
-
+        create(:final_ranking, :finished_first, fantasy_player: fantasy_player)
 
         result = fantasy_player.with_points
 
@@ -107,8 +140,7 @@ describe FantasyPlayer do
     context "with an associated final ranking" do
       it "returns the winnings" do
         fantasy_player = create(:fantasy_player)
-        create(:final_ranking, :finished_first,
-               fantasy_player: fantasy_player)
+        create(:final_ranking, :finished_first, fantasy_player: fantasy_player)
 
         result = fantasy_player.with_winnings
 
@@ -133,7 +165,7 @@ describe FantasyPlayer do
         fantasy_player = create(:fantasy_player)
         fantasy_team = create(:fantasy_team, name: "Brown")
         create(:roster_position, fantasy_player: fantasy_player,
-               fantasy_team: fantasy_team)
+                                 fantasy_team: fantasy_team)
 
         result = fantasy_player.with_owner
 

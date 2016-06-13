@@ -6,18 +6,19 @@ class FantasyLeague < ActiveRecord::Base
   validates :year, presence: true
   validates :division, presence: true
 
-  def self.right_joins_fantasy_players(league)
-    fantasy_team_subquery_by_league(league).
+  def self.right_joins_fantasy_players(league_id)
+    fantasy_team_subquery_by_league(league_id).
       merge(FantasyTeam.all_fantasy_players_with_details).
       order("sports_leagues.championship_date, fantasy_players.name")
   end
 
-  def self.fantasy_team_subquery_by_league(league)
+  def self.fantasy_team_subquery_by_league(league_id)
     joins("
       INNER JOIN fantasy_teams
         ON fantasy_teams.fantasy_league_id = fantasy_leagues.id
         AND " + ActiveRecord::Base.send(:sanitize_sql_array,
-        ["fantasy_teams.fantasy_league_id = ?",league]) + "").
+                                        ["fantasy_teams.fantasy_league_id = ?",
+                                         league_id]) + "").
       select_fantasy_league_columns
   end
 
