@@ -42,7 +42,24 @@ feature "admin visits admin dashboard" do
     click_on "Create Final ranking"
 
     expect(page).to have_css(".flash",
-      text: "FinalRanking was successfully created.")
+                             text: "FinalRanking was successfully created.")
+  end
+
+  scenario "and creates final ranking from fantasy player page", js: true do
+    create_admin
+    create(:fantasy_player, name: "Seattle Seahawks")
+
+    sign_in_with("admin@example.com", "password")
+    visit_admin_to_edit "Fantasy Players"
+    click_on "Add Final Ranking"
+    fill_in "Year", with: 2016
+    fill_in "Rank", with: 1
+    fill_in "Points", with: 8
+    fill_in "Winnings", with: 25
+    click_on "Update Fantasy player"
+
+    expect(page).to have_css(".flash",
+                             text: "FantasyPlayer was successfully updated.")
   end
 
   scenario "and adds fantasy player to fantasy team" do
@@ -58,7 +75,7 @@ feature "admin visits admin dashboard" do
     click_on "Create Roster position"
 
     expect(page).to have_css(".flash",
-      text: "RosterPosition was successfully created.")
+                             text: "RosterPosition was successfully created.")
   end
 
   scenario "and creates a fantasy league" do
@@ -72,7 +89,7 @@ feature "admin visits admin dashboard" do
     click_on "Create Fantasy league"
 
     expect(page).to have_css(".flash",
-      text: "FantasyLeague was successfully created.")
+                             text: "FantasyLeague was successfully created.")
   end
 
   scenario "and updates a user to an admin" do

@@ -19,7 +19,7 @@ class RosterTransactionDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     transaction_line_items: Field::NestedHasMany.
-      with_options(skip: :roster_transaction),
+                     with_options(skip: :roster_transaction),
   }.freeze
 
   # COLLECTION_ATTRIBUTES

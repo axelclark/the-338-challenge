@@ -15,7 +15,7 @@ class FantasyPlayerDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     final_rankings: Field::NestedHasMany.
-      with_options(skip: :fantasy_player),
+                     with_options(skip: :fantasy_player),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
