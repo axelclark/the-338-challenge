@@ -18,6 +18,8 @@ class RosterTransactionDashboard < Administrate::BaseDashboard
     roster_transaction_on: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    transaction_line_items: Field::NestedHasMany.
+      with_options(skip: :roster_transaction),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -51,6 +53,7 @@ class RosterTransactionDashboard < Administrate::BaseDashboard
     :roster_transaction_type,
     :roster_transaction_on,
     :additional_terms,
+    :transaction_line_items,
   ].freeze
 
   # Overwrite this method to customize how roster transactions are displayed

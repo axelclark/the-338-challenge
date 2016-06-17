@@ -4,6 +4,7 @@ ruby "2.3.0"
 
 gem "administrate", "~> 0.2.0"
 gem "administrate-field-image"
+gem "administrate-field-nested_has_many", "~> 0.0.2"
 gem "autoprefixer-rails"
 gem "bourbon"
 gem "clearance", "~> 1.14.0"
