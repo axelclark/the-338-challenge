@@ -3,6 +3,7 @@ class RosterTransaction < ActiveRecord::Base
   has_many :fantasy_teams, through: :transaction_line_items
   has_many :transaction_line_items, dependent: :destroy
   has_many :transaction_line_item_details
+
   accepts_nested_attributes_for :transaction_line_items, allow_destroy: true
 
   enum roster_transaction_type: {

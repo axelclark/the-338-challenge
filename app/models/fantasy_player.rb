@@ -7,6 +7,8 @@ class FantasyPlayer < ActiveRecord::Base
   has_many :transaction_line_item_details
   belongs_to :sports_league
 
+  accepts_nested_attributes_for :final_rankings, allow_destroy: true
+
   validates :name, presence: true
 
   def self.with_all_details

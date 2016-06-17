@@ -14,6 +14,8 @@ class FantasyPlayerDashboard < Administrate::BaseDashboard
     final_rankings: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    final_rankings: Field::NestedHasMany.
+      with_options(skip: :fantasy_player),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -43,6 +45,7 @@ class FantasyPlayerDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :name,
     :sports_league,
+    :final_rankings,
   ].freeze
 
   # Overwrite this method to customize how fantasy players are displayed
